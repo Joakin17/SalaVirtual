@@ -7,7 +7,7 @@
 </li>
 
 <li class="nav-item">
-    <a href="{{ route('home') }}" class="nav-link">
+    <a href="/prestamocompus" class="nav-link">
         <i class="nav-icon fas fa-desktop"></i>
         <p>Sala Virtual</p>
     </a>

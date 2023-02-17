@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Prestamo;
 
 class PrestamoController extends Controller
 {
@@ -13,7 +14,8 @@ class PrestamoController extends Controller
      */
     public function index()
     {
-        //
+        $prestamospc = Prestamo::all(); 
+        return view('prestamocompu.index')->with('prestamospc', $prestamospc);
     }
 
     /**

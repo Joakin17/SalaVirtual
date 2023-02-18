@@ -15,8 +15,54 @@
 
 
 <h1>Préstamos de Computadoras</h1>
-<div ><a href="#" data-toggle="modal" data-target="#addrepartidor" class="btn btn-primary float-right" > Prestar</a></div>
+<div ><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Prestar
+</button><br></div>
 <br>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Prestar Computadora</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form>
+
+
+  <div class="form-group">
+    <label for="exampleFormControlInput1">PC</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="PC">
+  </div>
+
+<div class="form-group">
+    <label for="exampleFormControlInput1">PC</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="PC">
+  </div>
+
+
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
 {{-- <table id="trprestarpc" class="display responsive nowrap" style="width:100%"> --}}
   <div class="table-responsive">
 <table id="trepartidor" class="table table-bordered table-striped display responsive nowrap" style="width:100%">

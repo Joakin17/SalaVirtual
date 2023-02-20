@@ -31,25 +31,23 @@
         </button>
       </div>
       <div class="modal-body">
-      <form>
-
+      <form action="{{ route('prestamocompus.show', '1') }}" method="GET">
+   
 
   <div class="form-group">
-    <label for="exampleFormControlInput1">PC</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="PC">
-  </div>
-
-<div class="form-group">
-    <label for="exampleFormControlInput1">PC</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="PC">
+    <label for="exampleFormControlInput1">Buscar Usuario</label>
+    <input type="text" class="form-control" id="carne" name="carne" placeholder="Ingresar carné">
   </div>
 
 
-</form>
+
+
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
+       
+       
+    <button class="btn btn-primary" style="margin-right:10px;">Buscar</button>
+</form>
       </div>
     </div>
   </div>

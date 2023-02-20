@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Prestamo;
-use App\Models\Usuario;
 
-class PrestamoController extends Controller
+class UsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +13,7 @@ class PrestamoController extends Controller
      */
     public function index()
     {
-        $prestamospc = Prestamo::all();
-        $usuarios = Usuario::all();
-        return view('prestamocompu.index')->with(['prestamospc'=>$prestamospc, 'usuarios'=>$usuarios]);
+        //
     }
 
     /**
@@ -47,12 +43,9 @@ class PrestamoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
-        $busca = $request->get('carne');
-        $usuario = Usuario::where('carne', $busca)->first();;
-
-        return view('prestamocompu.prestar')->with('usuario', $usuario);
+        //
     }
 
     /**
@@ -63,7 +56,7 @@ class PrestamoController extends Controller
      */
     public function edit($id)
     {
-        
+        //
     }
 
     /**

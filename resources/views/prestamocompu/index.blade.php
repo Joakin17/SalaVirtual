@@ -9,11 +9,6 @@
  
 
 
-
-
-
-
-
 <h1>Préstamos de Computadoras</h1>
 <div ><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Prestar
@@ -56,11 +51,6 @@
 
 
 
-
-
-
-
-
 {{-- <table id="trprestarpc" class="display responsive nowrap" style="width:100%"> --}}
   <div class="table-responsive">
 <table id="trepartidor" class="table table-bordered table-striped display responsive nowrap" style="width:100%">
@@ -85,7 +75,9 @@
         <td>{{$prestamopc->carne }}</td>
         <td>{{$prestamopc->nombre }}</td>
         <td>{{$prestamopc->facultad }}</td>
+        <td><a href="{{route('liberar', ['id'=> $prestamopc->id, 'comp'=>$prestamopc->pc]) }}" class="btn btn-info">Liberarr</a>
       
+      </td>
     @endforeach
 </tbody>
 </table>

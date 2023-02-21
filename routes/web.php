@@ -20,4 +20,7 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('prestamocompus', 'App\Http\Controllers\PrestamoController');
 
+Route::get('/guardarpres', [App\Http\Controllers\PrestamoController::class, 'guardar'])->name('guardar');
+Route::get('/liberar/{id}/{comp}', [App\Http\Controllers\PrestamoController::class, 'liberar'])->name('liberar');
+
 Auth::routes();

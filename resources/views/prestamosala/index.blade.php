@@ -9,7 +9,7 @@
  
 
 
-<h1>Préstamos de Computadoras</h1>
+<h1>Préstamos de Salas de Estudio</h1>
 <div ><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Prestar
 </button><br></div>
@@ -20,13 +20,13 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Prestar Computadora</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Prestar Sala de Estudio</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-      <form action="{{ route('prestamocompus.show', '1') }}" method="GET">
+      <form action="{{ route('prestamosalas.show', '1') }}" method="GET">
    
 
   <div class="form-group">
@@ -58,7 +58,8 @@
     <tr >
       
      
-      <th scope="col"># de PC</th>
+      <th scope="col"># de Sala</th>
+      <th scope="col"># de Puesto</th>
       <th scope="col">Carné</th>
       <th scope="col">Nombre</th>
       <th scope="col">Facultad</th>
@@ -69,13 +70,14 @@
     </tr>
 </thead>
 <tbody>
-    @foreach ($prestamospc as $prestamopc )
-    <tr data-id="{{ $prestamopc->id }}">
-        <td>{{$prestamopc->pc}}</td>
-        <td>{{$prestamopc->carne }}</td>
-        <td>{{$prestamopc->nombre }}</td>
-        <td>{{$prestamopc->facultad }}</td>
-        <td><a href="{{route('liberar', ['id'=> $prestamopc->id, 'comp'=>$prestamopc->pc]) }}" class="btn btn-info">Liberar</a>
+    @foreach ($prestamossala as $prestamosala )
+    <tr data-id="{{ $prestamosala->id }}">
+        <td>{{$prestamosala->sala}}</td>
+        <td>{{$prestamosala->puesto}}</td>
+        <td>{{$prestamosala->carne }}</td>
+        <td>{{$prestamosala->nombre }}</td>
+        <td>{{$prestamosala->facultad }}</td>
+        <td><a href="{{route('liberarsala', ['id'=> $prestamosala->id, 'sala'=>$prestamosala->sala]) }}" class="btn btn-info">Liberar</a>
       
       </td>
     @endforeach

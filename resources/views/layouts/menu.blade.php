@@ -28,7 +28,7 @@
 </li>
 
 <li class="nav-item">
-    <a href="{{ route('home') }}" class="nav-link">
+    <a href="/agregaru" class="nav-link">
         <i class="nav-icon fas fa-user-plus"></i>
         <p>Agregar Usuario</p>
     </a>

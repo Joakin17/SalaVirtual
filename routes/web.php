@@ -28,4 +28,7 @@ Route::get('/guardaruser', [App\Http\Controllers\PrestamoController::class, 'gua
 Route::get('/liberar/{id}/{comp}', [App\Http\Controllers\PrestamoController::class, 'liberar'])->name('liberar');
 Route::get('/liberarsala/{id}/{sala}', [App\Http\Controllers\PrestamosalaController::class, 'liberarsala'])->name('liberarsala');
 
+Route::view('/agregaru', 'prestamocompu.agregarusuario');
+
+
 Auth::routes();

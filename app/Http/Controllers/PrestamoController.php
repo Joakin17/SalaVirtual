@@ -53,6 +53,22 @@ class PrestamoController extends Controller
 
     }
 
+    public function guardaruser(Request $request)
+    {
+        $prestamos = new Usuario();
+        $prestamos->carne = $request->get('carne');
+        $prestamos->nombre = $request->get('nombre');
+        $prestamos->facultad = $request->get('facultad');
+        $prestamos->carrera = $request->get('carrera');
+        $prestamos->genero = $request->get('genero');
+        //$prestamos->pc = $request->get('compu');
+        $prestamos->save();
+        $prestamospc = Prestamo::all();
+        return view('prestamocompu.index')->with(['prestamospc'=>$prestamospc]);
+
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -81,9 +97,15 @@ class PrestamoController extends Controller
     public function show(Request $request)
     {
         $busca = $request->get('carne');
-        $usuario = Usuario::where('carne', $busca)->first();;
-        $compus  = Compu::All();
-        return view('prestamocompu.prestar')->with(['usuario'=>$usuario, 'compus'=>$compus]);
+        $usuario = Usuario::where('carne', $busca)->first();
+        if($usuario==false)
+        {
+            return view('prestamocompu.agregarusuario')->with(['busca'=>$busca]);
+            
+        }else{
+            $compus  = Compu::All();
+            return view('prestamocompu.prestar')->with(['usuario'=>$usuario, 'compus'=>$compus]);
+        }
     }
 
     /**

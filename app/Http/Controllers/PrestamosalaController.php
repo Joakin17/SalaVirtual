@@ -31,7 +31,7 @@ class PrestamosalaController extends Controller
     {
         //
     }
-
+ 
     public function guardar(Request $request)
     {
         $prestamos = new Prestamosala();
@@ -83,8 +83,16 @@ class PrestamosalaController extends Controller
     {
         $busca = $request->get('carne');
         $usuario = Usuario::where('carne', $busca)->first();;
-        $salas  = Salasestudio::All();
-        return view('prestamosala.prestar')->with(['usuario'=>$usuario, 'salas'=>$salas]);
+        if($usuario==false)
+        {
+            return view('prestamocompu.agregarusuario')->with(['busca'=>$busca]);
+            
+        }else{
+            $salas  = Salasestudio::All();
+            return view('prestamosala.prestar')->with(['usuario'=>$usuario, 'salas'=>$salas]);
+        }
+
+       
     }
 
     /**

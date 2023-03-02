@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="{{ route('home') }}" class="brand-link">
-        <img src="imgs/logo.png"
+        <img src="imgs/Logo.png"
              alt="AdminLTE Logo"
              class="brand-image img-circle elevation-3">
         <span class="brand-text font-weight-light">Biblioteca UNICAES</span>
@@ -13,5 +13,4 @@
             </ul>
         </nav>
     </div>
-
 </aside>

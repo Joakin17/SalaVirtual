@@ -21,7 +21,7 @@
 </li>
 
 <li class="nav-item">
-    <a href="{{ route('home') }}" class="nav-link">
+    <a href="{{ route('estadistica') }}" class="nav-link">
         <i class="nav-icon fas fa-chart-line"></i>
         <p>Estadísticas</p>
     </a>

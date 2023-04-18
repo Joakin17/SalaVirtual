@@ -34,11 +34,13 @@
     </div>
   </div>
   <div class="card bg-danger">
+    <a href="/estadistica">
     <img class="card-img-top" src="/imgs/esta.jpg" alt="Card image cap" style="height: 360px;">
     <div class="card-body">
       <h2 class="text-center p-4">Estadísticas</h2>
       
     </div>
+    </a>
     <div class="card-footer">
       <small class="text-muted"></small>
     </div>

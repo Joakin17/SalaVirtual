@@ -10,11 +10,7 @@ use App\Models\Estadistica;
 
 class PrestamoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $prestamospc = Prestamo::all();
@@ -22,16 +18,13 @@ class PrestamoController extends Controller
         return view('prestamocompu.index')->with(['prestamospc'=>$prestamospc]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
+
+    //esta funcion de guardar es para guardar usuarios desde el formulario agregar usuario.
     public function guardar(Request $request)
     {
         $prestamos = new Prestamo();
@@ -49,32 +42,25 @@ class PrestamoController extends Controller
         $prestamospc = Prestamo::all();
         $usuarios = Usuario::all();
         return view('prestamocompu.index')->with(['prestamospc'=>$prestamospc]);
-
-
     }
 
+
+    //esta funcion es para guardar el usuario cuando prestamos la maquina supongo que es para estadistica.
     public function guardaruser(Request $request)
     {
         $prestamos = new Usuario();
         $prestamos->carne = $request->get('carne');
         $prestamos->nombre = $request->get('nombre');
+        $prestamos->apellido = $request->get('apellido');
         $prestamos->facultad = $request->get('facultad');
         $prestamos->carrera = $request->get('carrera');
         $prestamos->genero = $request->get('genero');
-        //$prestamos->pc = $request->get('compu');
         $prestamos->save();
         $prestamospc = Prestamo::all();
-        return view('prestamocompu.index')->with(['prestamospc'=>$prestamospc]);
-
-
+        return view('home')->with(['prestamospc'=>$prestamospc]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //esta guarda el prestamo 
     public function store(Request $request)
     {
         $prestamos = new Prestamo();
@@ -88,12 +74,7 @@ class PrestamoController extends Controller
         return view('prestamocompu.index')->with(['prestamospc'=>$prestamospc, 'usuarios'=>$usuarios]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // esta funcion es para el modal que busca por carnet para prestar
     public function show(Request $request)
     {
         $busca = $request->get('carne');
@@ -108,38 +89,21 @@ class PrestamoController extends Controller
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id, $comp)
+    //esta funcion es para el model para buscar y editar el usuario.
+    public function showedit(Request $request)
     {
-       /*
-        $prestamo = Prestamo::find($id);
-        $prestamo->nota = 1;
-        $prestamo->save();
-
-        $estadistica = new Estadistica();
-        $estadistica->carne = $prestamo->carne;
-        $estadistica->nombre = $prestamo->nombre;
-        $estadistica->facultad = $prestamo->facultad;
-        $estadistica->carrera = $prestamo->carrera;
-        $estadistica->genero = $prestamo->genero;
-        $estadistica->pc = $prestamo->pc;
-        $estadistica->save();
-
-        $compu = Compu::find($comp);
-        $compu->estado = 0;
-        $compu->save();
-
-        $prestamo->delete();
-        return redirect('/prestamocompus');
-
-*/
-       // return view('vendedor.edit')->with('vendedor', $vendedor);
+        $busca = $request->get('carne');
+        $usuario = Usuario::where('carne', $busca)->first();
+        
+        if (!$usuario) {
+            return view('prestamocompu.agregarusuario')->with(['busca' => $busca]);
+        }
+        
+        return view('usuario.edituser')->with(['usuario' => $usuario]);
     }
+    
+  
+
     public function liberar($id, $comp)
     {
        
@@ -163,28 +127,33 @@ class PrestamoController extends Controller
         $prestamo->delete();
         return redirect('/prestamocompus');
 
-
-       // return view('vendedor.edit')->with('vendedor', $vendedor);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $usuario = Usuario::find($id);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+        if (!$usuario) {
+            return redirect()->route('prestamocompu.agregarusuario')
+                ->with('error', 'Usuario no encontrado');
+        }
+
+        // Actualiza los campos del usuario con los valores del formulario
+        $usuario->carne = $request->input('carne');
+        $usuario->nombre = $request->input('nombre');
+        $usuario->apellido = $request->input('apellido');
+        $usuario->facultad = $request->input('facultad');
+        $usuario->carrera = $request->input('carrera');
+        $usuario->genero = $request->input('genero');
+
+        // Guarda los cambios en la base de datos
+        $usuario->save();
+
+        // Redirige de vuelta a la vista de edición con un mensaje de éxito
+        return redirect()->route('home', $id)
+            ->with('success', 'Usuario actualizado correctamente');
+    }
+    
     public function destroy($id)
     {
         //

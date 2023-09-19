@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +41,16 @@ Route::get('/estasalasmensual', [App\Http\Controllers\EstadisticasalaController:
 Route::get('/estasalasrango', [App\Http\Controllers\EstadisticasalaController::class, 'rango'])->name('rango');
 Route::get('/estasalasgenero', [App\Http\Controllers\EstadisticasalaController::class, 'genero'])->name('genero');
 
+Route::get('/prestamocompus/showedit/{carne}', [App\Http\Controllers\PrestamoController::class, 'showedit'])->name('prestamocompus.showedit');
+Route::put('/prestamocompus/update/{id}', [App\Http\Controllers\PrestamoController::class, 'update'])->name('prestamocompus.update');
+
+
+
+Route::get('/usuarios', function () {
+    return view('usuario.usuarios');
+})->name('usuarios');
+
+Route::view('/usuarios', 'usuario.usuarios');
 Route::view('/agregaru', 'prestamocompu.agregarusuario');
 Route::view('/estadistica', 'estadistica.index')->name('estadistica');
 // Route::view('/estadistica/compus', 'estadistica.compus.index');

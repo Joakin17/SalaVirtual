@@ -2,88 +2,137 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ config('app.name') }}</title>
+
+    <title>Préstamos de Salas Biblioteca</title>
+    <link rel="icon" href="{{ asset('imgs/logou.png') }}" type="image/png">
+    
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-          integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
-          crossorigin="anonymous"/>
-
+  
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-
-    @yield('third_party_stylesheets')
-
-    @stack('page_css')
 </head>
-
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
-    <!-- Main Header -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-            </li>
-        </ul>
-
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown user-menu">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                    <img src="https://infyom.com/images/logo/blue_logo_150x150.jpg"
-                         class="user-image img-circle elevation-2" alt="User Image">
-                    <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <!-- User image -->
-                    <li class="user-header bg-primary">
-                        <img src="https://infyom.com/images/logo/blue_logo_150x150.jpg"
-                             class="img-circle elevation-2"
-                             alt="User Image">
-                        <p>
-                            {{ Auth::user()->name }}
-                            <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
-                        </p>
-                    </li>
-                    <!-- Menu Footer-->
-                    <li class="user-footer">
-                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                        <a href="#" class="btn btn-default btn-flat float-right"
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Sign out
+<body>
+   
+<div id="app">
+<nav class="navbar navbar-expand-md navbar-light bg-custom-red shadow-sm">
+    <a class="navbar-brand" href="{{ route('home') }}">
+        <img src="{{ asset('imgs/logou.png') }}" alt="Logo" style="width: 75px;"> Préstamos de Salas Biblioteca
+    </a>
+            <div class="container">
+                <!-- Navbar Links -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    
+                <ul class="nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ route('home') }}">
+                            Home
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </li>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/prestamocompus">
+                            Sala Virtual
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/prestamosalas">
+                            Salas de Estudio
+                        </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navbar-button" href="{{ route('estadistica') }}">
+                            Estadísticas
+                        </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navbar-button" href="/usuarios">
+                            Usuarios
+                        </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Entrar') }}</a>
+                                </li>
+                            @endif
+    
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle username" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                        {{ __('Salir') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>                  
                 </ul>
-            </li>
-        </ul>
-    </nav>
+            </div>
+            <style>
+        /* Estilos para el nav */
+        .navbar {
+        padding: 15px 0;
+        text-align: center;
+    }
+    .bg-custom-red {
+        background-color: #9D2720; /* Cambia esto al código de color personalizado que desees */
+    }
+        .navbar::before {
+            content: "";
+            position: absolute;
+            top: -30px;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background-color: #F6C03D; 
+            border-radius: 50%;
+        }
+        .navbar .nav-link {
+            color: #9D2720;
+            background-color: #F6C03D;
+            padding: 8px 16px;
+            margin: 3px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            
+        }
+        .navbar .nav-link:hover {
+            background-color: #9D2720;
+            color: #F6C03D;
+            transition: 0.3s;
+        }
+        .navbar .nav-link.username {
+            color: white; /* Establecemos el color del texto del nombre de usuario */
+        }
 
-    <!-- Left side column. contains the logo and sidebar -->
-@include('layouts.sidebar')
-
-<!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <section class="content">
+    </style>
+        </nav>
+        <main class="py-4">
             @yield('content')
-        </section>
+        </main>
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <div class="container">
+                <div class="float-right d-none d-sm-block">
+                    <!-- Contenido opcional en el pie de página -->
+                </div>
+                <strong>Copyright &copy; 2023 <a href="https://catolica.edu.sv">Universidad Católica de El Salvador</a>.</strong>
+            </div>
+        </footer>
     </div>
-
-    <!-- Main Footer -->
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-           
-        </div>
-        <strong>Copyright &copy; 2023 <a href="https://catolica.edu.sv">Universidad Católica de El Salvador</a>.</strong> 
-    </footer>
-</div>
-
-<script src="{{ mix('js/app.js') }}" defer></script>
-
-@yield('third_party_scripts')
-
-@stack('page_scripts')
+    <script src="{{ mix('js/app.js') }}" defer></script>
+    @yield('third_party_scripts')
+    @stack('page_scripts')
 </body>
 </html>

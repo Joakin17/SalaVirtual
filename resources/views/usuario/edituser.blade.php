@@ -2,38 +2,39 @@
 
 @section('content')
 
-<h3 class="text-center">Agregar usuario</h3>
+<h1 class="text-center">Editar usuario</h1>
 
-<form action="/guardaruser" method="GET">
+<form action="{{ route('prestamocompus.update', $usuario->id) }}" method="POST">
+
 @csrf
+@method('PUT') 
+    <div class="mb-3 col-2">
+        <label for="carne" class="form-label">Carné</label>
+        <input type="text" id="carne" name="carne" class="form-control" tabindex="1" value="{{$usuario->carne}}">
+    </div>
+    <div class="mb-3 col-4">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" id="nombre" name="nombre" class="form-control" tabindex="2" value="{{$usuario->nombre}}">
+    </div>
+    <div class="mb-3 col-4">
+        <label for="apellido" class="form-label">Apellido</label>
+        <input type="text" id="apellido" name="apellido" class="form-control" tabindex="6" value="{{$usuario->apellido}} ">
+    </div>
+    <div class="mb-3 col-4">
+    <label for="facultad" class="form-label">Facultad</label>
+    <select id="facultad" name="facultad" class="form-select" tabindex="3"  value=" {{$usuario->facultad}}">
+        <option value="FACULTAD DE CIENCIAS EMPRESARIALES" {{$usuario->facultad == 'FACULTAD DE CIENCIAS EMPRESARIALES' ? 'selected' : ''}}>FACULTAD DE CIENCIAS EMPRESARIALES</option>
+        <option value="FACULTAD DE INGENIERIA Y ARQUITECTURA" {{$usuario->facultad == 'FACULTAD DE INGENIERIA Y ARQUITECTURA' ? 'selected' : ''}}>FACULTAD DE INGENIERIA Y ARQUITECTURA</option>
+        <option value="FACULTAD DE CIENCIAS Y HUMANIDADES" {{$usuario->facultad == 'FACULTAD DE CIENCIAS Y HUMANIDADES' ? 'selected' : ''}}>FACULTAD DE CIENCIAS Y HUMANIDADES</option>
+        <option value="FACULTAD DE CIENCIA DE LA SALUD" {{$usuario->facultad == 'FACULTAD DE CIENCIA DE LA SALUD' ? 'selected' : ''}}>FACULTAD DE CIENCIA DE LA SALUD</option>
+        <option value="Escuela de Posgrados" {{$usuario->facultad == 'Escuela de Posgrados' ? 'selected' : ''}}>ESCUELA DE POSGRADOS</option>
+    </select>
+</div>
 
-    <div class="mb-3 col-2" >
-        <label for="" class="form-label">Carné</label>
-        <input type="text" id="carne" name="carne" class="form-control" tabindex="1"  >
-    </div>
-    <div class="mb-3 col-4" >
-        <label for="" class="form-label">Nombre</label>
-        <input type="text" id="nombre" name="nombre" class="form-control"  >
-    </div>
-    <div class="mb-3 col-4" >
-        <label for="" class="form-label">Apellido</label>
-        <input type="text" id="apellido" name="apellido" class="form-control"  >
-    </div>
-    <div class="mb-3 col-4" >
-        <label for="" class="form-label">Facultad</label>
-        <select id="facultad" name="facultad" class="form-control">
-       <option value="FACULTAD DE CIENCIAS EMPRESARIALES">FACULTAD DE CIENCIAS EMPRESARIALES</option>
-       <option value="FACULTAD DE INGENIERIA Y ARQUITECTURA">FACULTAD DE INGENIERIA Y ARQUITECTURA</option>
-       <option value="FACULTAD DE CIENCIAS Y HUMANIDADES">FACULTAD DE CIENCIAS Y HUMANIDADES</option>
-       <option value="FACULTAD DE CIENCIA DE LA SALUD">FACULTAD DE CIENCIA DE LA SALUD</option>
-       <option value="Escuela de Posgrados">ESCUELA DE POSGRADOS</option>
-       </select>
-        
-        </div> 
-        <div class="mb-3 col-4" >
-        <label for="" class="form-label">Carrera</label>
-        <select id="carrera" name="carrera" class="form-control">
-            <option value="Licenciatura en Administración de Empresas">Licenciatura en Administración de Empresas</option>
+    <div class="mb-3 col-4">
+        <label for="carrera" class="form-label">Carrera</label>
+        <select id="carrera" name="carrera" class="form-select" tabindex="4" value=" {{$usuario->carrera}}">
+        <option value="Licenciatura en Administración de Empresas">Licenciatura en Administración de Empresas</option>
             <option value="Licenciatura en Administración de Empresas (Semipresencial)">Licenciatura en Administración de Empresas (Semipresencial)</option>
             <option value="Licenciatura en Sistemas Informáticos Administrativos">Licenciatura en Sistemas Informáticos Administrativos</option>
             <option value="Licenciatura en Contaduría Pública">Licenciatura en Contaduría Pública</option>
@@ -79,22 +80,20 @@
             <option value="Doctorado en Educación">Doctorado en Educación</option>
             <option value="Técnico en Lácteos y Cárnicos">Técnico en Lácteos y Cárnicos</option>
             <option value="Técnico en Gestión y Desarrollo Turístico">Técnico en Gestión y Desarrollo Turístico</option>
-         </select>
+        </select>
     </div>
 
-    <div class="mb-3 col-2" >
-        <label for="" class="form-label">Género</label>
-        <select id="genero" name="genero" class="form-control">
-       <option value="F">F</option>
-       <option value="M">M</option>
-       </select>
+    <div class="mb-3 col-2">
+        <label for="genero" class="form-label">Género</label>
+        <select id="genero" name="genero" class="form-select" tabindex="5" value=" {{$usuario->genero}}">
+            <option value="Masculino" {{$usuario->genero == 'Masculino' ? 'selected' : ''}}>Masculino</option>
+            <option value="Femenino" {{$usuario->genero == 'Femenino' ? 'selected' : ''}}>Femenino</option>
+            <option value="Otro" {{$usuario->genero == 'Otro' ? 'selected' : ''}}>Otro</option>
+        </select>
     </div>
-    
 
-
-    <button class="btn btn-primary" style="margin-right:10px;">Guardar</button>
+    <button class="btn btn-primary" style="margin-right:10px;">Actualizar usuario</button>
 
 </form>
-
 
 @endsection

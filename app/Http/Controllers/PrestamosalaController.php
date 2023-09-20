@@ -58,7 +58,7 @@ class PrestamosalaController extends Controller
 
         $prestamossala = Prestamosala::all();
         $usuarios = Usuario::all();
-        return view('prestamosala.index')->with(['prestamossala'=>$prestamossala]);
+        return redirect()->route('prestamosala.index');
 
 
     }

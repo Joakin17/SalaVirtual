@@ -18,13 +18,7 @@ class PrestamoController extends Controller
         return view('prestamocompu.index')->with(['prestamospc'=>$prestamospc]);
     }
 
-    public function create()
-    {
-        //
-    }
-
-
-    //esta funcion de guardar es para guardar usuarios desde el formulario agregar usuario.
+    //esta funcion de guardar el prestamo de la compue que se muestra en la tabla de vista sala virtual
     public function guardar(Request $request)
     {
         $prestamos = new Prestamo();
@@ -41,11 +35,12 @@ class PrestamoController extends Controller
 
         $prestamospc = Prestamo::all();
         $usuarios = Usuario::all();
-        return view('prestamocompu.index')->with(['prestamospc'=>$prestamospc]);
+        return redirect()->route('prestamocompu.index');
+
     }
 
 
-    //esta funcion es para guardar el usuario cuando prestamos la maquina supongo que es para estadistica.
+    //esta funcion es para guardar el usuario desde el formulario de agregar usuario.
     public function guardaruser(Request $request)
     {
         $prestamos = new Usuario();
@@ -61,7 +56,7 @@ class PrestamoController extends Controller
     }
 
     //esta guarda el prestamo 
-    public function store(Request $request)
+   /*  public function store(Request $request)
     {
         $prestamos = new Prestamo();
         $prestamos->carne = $request->get('carne');
@@ -72,7 +67,7 @@ class PrestamoController extends Controller
         $prestamos->pc = $request->get('compu');
         $prestamos->save();
         return view('prestamocompu.index')->with(['prestamospc'=>$prestamospc, 'usuarios'=>$usuarios]);
-    }
+    } */
 
     // esta funcion es para el modal que busca por carnet para prestar
     public function show(Request $request)
@@ -89,7 +84,7 @@ class PrestamoController extends Controller
         }
     }
 
-    //esta funcion es para el model para buscar y editar el usuario.
+    //esta funcion es para el model para buscar por carnet y editar el usuario.
     public function showedit(Request $request)
     {
         $busca = $request->get('carne');
@@ -102,8 +97,7 @@ class PrestamoController extends Controller
         return view('usuario.edituser')->with(['usuario' => $usuario]);
     }
     
-  
-
+    //esta es la funcion de liberar maquina en sala virtual.
     public function liberar($id, $comp)
     {
        
@@ -129,6 +123,7 @@ class PrestamoController extends Controller
 
     }
 
+    //esta es la funcion de actualizar usuario 
     public function update(Request $request, $id)
     {
         $usuario = Usuario::find($id);
@@ -149,7 +144,7 @@ class PrestamoController extends Controller
         // Guarda los cambios en la base de datos
         $usuario->save();
 
-        // Redirige de vuelta a la vista de edición con un mensaje de éxito
+        // Redirige de vuelta a la vista home con un mensaje de éxito
         return redirect()->route('home', $id)
             ->with('success', 'Usuario actualizado correctamente');
     }

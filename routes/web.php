@@ -44,11 +44,16 @@ Route::get('/estasalasgenero', [App\Http\Controllers\EstadisticasalaController::
 Route::get('/prestamocompus/showedit/{carne}', [App\Http\Controllers\PrestamoController::class, 'showedit'])->name('prestamocompus.showedit');
 Route::put('/prestamocompus/update/{id}', [App\Http\Controllers\PrestamoController::class, 'update'])->name('prestamocompus.update');
 
+Route::get('/prestamocompu/index', [App\Http\Controllers\PrestamoController::class, 'index'])->name('prestamocompu.index');
+Route::get('/prestamosala/index', [App\Http\Controllers\PrestamosalaController::class, 'index'])->name('prestamosala.index');
 
 
 Route::get('/usuarios', function () {
     return view('usuario.usuarios');
 })->name('usuarios');
+
+Route::view('/estudiante', 'usuario.estudiante');
+Route::view('/externo', 'usuario.externo');
 
 Route::view('/usuarios', 'usuario.usuarios');
 Route::view('/agregaru', 'prestamocompu.agregarusuario');

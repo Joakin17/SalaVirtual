@@ -4,20 +4,20 @@
 
 <h3 class="text-center">Agregar usuario</h3>
 
-<form action="/guardaruser" method="GET">
+<form id="userForm" action="/guardaruser" method="GET" onsubmit="return validarFormulario()">
 @csrf
 
     <div class="mb-3 col-2" >
-        <label for="" class="form-label">Carné</label>
-        <input type="text" id="carne" name="carne" class="form-control" tabindex="1"  >
+        <label for="carne" class="form-label">Carné</label>
+        <input type="text" id="carne" name="carne" class="form-control" tabindex="1">
     </div>
     <div class="mb-3 col-4" >
-        <label for="" class="form-label">Nombre</label>
-        <input type="text" id="nombre" name="nombre" class="form-control"  >
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" id="nombre" name="nombre" class="form-control">
     </div>
     <div class="mb-3 col-4" >
-        <label for="" class="form-label">Apellido</label>
-        <input type="text" id="apellido" name="apellido" class="form-control"  >
+        <label for="apellido" class="form-label">Apellido</label>
+        <input type="text" id="apellido" name="apellido" class="form-control">
     </div>
     <div class="mb-3 col-4" >
         <label for="" class="form-label">Facultad</label>
@@ -96,5 +96,20 @@
 
 </form>
 
+<script>
+function validarFormulario() {
+    var carne = document.getElementById("carne").value;
+    var nombre = document.getElementById("nombre").value;
+    var apellido = document.getElementById("apellido").value;
+
+    if (carne === "" || nombre === "" || apellido === "") {
+        alert("Por favor, complete todos los campos obligatorios.");
+        return false; // Evita que se envíe el formulario si hay campos vacíos.
+    }
+
+    // Si todos los campos obligatorios están completos, el formulario se enviará.
+    return true;
+}
+</script>
 
 @endsection

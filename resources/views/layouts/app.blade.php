@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <title>Préstamos de Salas Biblioteca</title>
+    <title style="color: white;">Préstamos de Salas Biblioteca</title>
+    
     <link rel="icon" href="{{ asset('imgs/logou.png') }}" type="image/png">
     
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -14,9 +14,10 @@
    
 <div id="app">
 <nav class="navbar navbar-expand-md navbar-light bg-custom-red shadow-sm">
-    <a class="navbar-brand" href="{{ route('home') }}">
-        <img src="{{ asset('imgs/logou.png') }}" alt="Logo" style="width: 75px;"> Préstamos de Salas Biblioteca
-    </a>
+<a class="navbar-brand text-white" href="{{ route('home') }}">
+    <img src="{{ asset('imgs/logou.png') }}" alt="Logo" style="width: 75px;"> Biblioteca Miguel de Cervantes
+</a>
+
             <div class="container">
                 <!-- Navbar Links -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -78,14 +79,16 @@
                 </ul>
             </div>
             <style>
+                
         /* Estilos para el nav */
-        .navbar {
+    .navbar {
         padding: 15px 0;
         text-align: center;
     }
     .bg-custom-red {
-        background-color: #9D2720; /* Cambia esto al código de color personalizado que desees */
+        background-color: #333333; 
     }
+    
         .navbar::before {
             content: "";
             position: absolute;
@@ -112,7 +115,7 @@
             transition: 0.3s;
         }
         .navbar .nav-link.username {
-            color: white; /* Establecemos el color del texto del nombre de usuario */
+            color: white;
         }
 
     </style>
@@ -120,17 +123,16 @@
         <main class="py-4">
             @yield('content')
         </main>
-
         <!-- Main Footer -->
         <footer class="main-footer">
             <div class="container">
                 <div class="float-right d-none d-sm-block">
-                    <!-- Contenido opcional en el pie de página -->
                 </div>
                 <strong>Copyright &copy; 2023 <a href="https://catolica.edu.sv">Universidad Católica de El Salvador</a>.</strong>
             </div>
         </footer>
     </div>
+     <!-- esto  de aqui hace que funcionen los modal -->
     <script src="{{ mix('js/app.js') }}" defer></script>
     @yield('third_party_scripts')
     @stack('page_scripts')

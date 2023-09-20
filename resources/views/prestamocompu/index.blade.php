@@ -3,38 +3,37 @@
 @section('content')
 <div class="container">
     <h1>Préstamos de Computadoras</h1>
-    
+    <!-- boton que muestra el modal -->
     <div class="mb-3">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
             Prestar
         </button>
     </div>
-    
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Prestar Computadora</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('prestamocompus.show', '1') }}" method="GET">
-                        <div class="form-group">
-                            <label for="carne">Buscar Usuario</label>
-                            <input type="text" class="form-control" id="carne" name="carne" placeholder="Ingresar carné">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" style="margin-right:10px;">Buscar</button>
-                </div>
-            </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Prestar Computadora</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form action="{{ route('prestamocompus.show', '1') }}" method="GET">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Buscar Usuario</label>
+          <input type="text" class="form-control" id="carne" name="carne" placeholder="Ingresar carné">
         </div>
+      </div>
+      <div class="modal-footer">   
+      <button class="btn btn-primary" style="margin-right:10px;">Buscar</button>
+      </form>
+      </div>
     </div>
-
+  </div>
+</div>
+ <!-- codigo para la tabla que muestra los prestamos de pc -->
     <div class="table-responsive">
         <table id="trepartidor" class="table table-bordered table-striped display responsive nowrap" style="width:100%">
             <thead class="table-dark">
@@ -61,21 +60,5 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://kit.fontawesome.com/b64093b700.js" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js" defer></script>
-<script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js" defer></script>
-<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js" defer></script>
-<script src="https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"></script>
-
-<script>
-$(document).ready(function() {
-    $('#trepartidor').DataTable({
-        responsive: true,
-        language: {
-            url: "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json" // Cambia a la última versión si es necesario
-        }
-    });
-});
-</script>
 @endsection
+

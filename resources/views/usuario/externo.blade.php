@@ -39,7 +39,7 @@
                     <p class="card-text"><strong>Agregar Usuario Externo</strong></p>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="/agregaru" class="btn btn-primary">Agregar Usuario Extermp</a>
+                    <a href="/agregaru" class="btn btn-primary">Agregar Usuario Externo</a>
                 </div>
             </div>
         </div>

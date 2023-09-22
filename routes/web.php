@@ -49,11 +49,24 @@ Route::get('/prestamosala/index', [App\Http\Controllers\PrestamosalaController::
 
 
 Route::get('/usuarios', function () {
-    return view('usuario.usuarios');
+return view('usuario.usuarios');
 })->name('usuarios');
 
 Route::view('/estudiante', 'usuario.estudiante');
 Route::view('/externo', 'usuario.externo');
+
+Route::get('/agregarusuarioext', function () {
+    return view('usuario.agregarusuarioext');
+})->name('agregarusuarioext');
+
+Route::post('/guardarUsuario', [App\Http\Controllers\UsuarioExternoController::class, 'guardarUsuario'])->name('guardarUsuario');
+
+Route::get('/usuarios-externos', 'UsuarioExternoController@index')->name('usuarios_externos.index');
+Route::get('/usuario-externo/editar/{id}', 'UsuarioExternoController@showedit')->name('UsuarioExterno.showeditar');
+Route::get('/usarios-externo/showeditar/{nit}', [App\Http\Controllers\UsuarioExternoController::class, 'showeditar'])->name('UsuarioExterno.showeditar');    
+Route::put('/usuario-externo/update/{id}', [App\Http\Controllers\UsuarioExternoController::class, 'update'])->name('updateUsuarioExterno');
+
+
 
 Route::view('/usuarios', 'usuario.usuarios');
 Route::view('/agregaru', 'prestamocompu.agregarusuario');

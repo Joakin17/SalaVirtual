@@ -14,11 +14,11 @@
                 </button>
             </div>
             <div class="modal-body">
-            <form action="{{ route('prestamocompus.showedit', '1') }}" method="GET">
+            <form action="{{ route('UsuarioExterno.showeditar', '1') }}" method="GET">
                 @csrf
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Buscar Usuario a editar</label>
-                    <input type="text" class="form-control" id="carne" name="carne" placeholder="Ingresar carné">
+                    <input type="text" class="form-control" id="Nit" name="Nit" placeholder="Ingresar NIT">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" style="margin-right:10px;">Editar usuario</button>
@@ -39,7 +39,7 @@
                     <p class="card-text"><strong>Agregar Usuario Externo</strong></p>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="/agregaru" class="btn btn-primary">Agregar Usuario Externo</a>
+                <a href="{{ route('agregarusuarioext') }}" class="btn btn-primary">Agregar Usuario Externo</a>
                 </div>
             </div>
         </div>

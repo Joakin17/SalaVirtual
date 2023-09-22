@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="compu" class="form-label">Computadoras Libres</label>
-                        <select id="compu" name="compu" class="form-control">
+                        <select id="compu" name="compu" class="form-control" >
                             @foreach($compus as $compu)
                                 @if($compu->estado == 0)
                                     <option value="{{ $compu->numero }}">{{ $compu->numero }}</option>

@@ -13,25 +13,25 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form action="{{ route('prestamocompus.update', $usuario->id) }}" method="POST" onsubmit="return validarFormulario()">
+            <form action="{{ route('prestamocompus.update', $usuario->id) }}" method="POST" >
                 @csrf
                 @method('PUT') <!-- Utiliza el método PUT para actualizar el registro -->
 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="carne" class="form-label">Carné</label>
-                        <input type="text" id="carne" name="carne" class="form-control" tabindex="1" value="{{$usuario->carne}}">
+                        <input type="text" id="carne" name="carne" class="form-control" tabindex="1" value="{{$usuario->carne}}" required>
                     </div>
                     <div class="col-md-6">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control" tabindex="2" value="{{$usuario->nombre}}">
+                        <input type="text" id="nombre" name="nombre" class="form-control" tabindex="2" value="{{$usuario->nombre}}" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="apellido" class="form-label">Apellido</label>
-                        <input type="text" id="apellido" name="apellido" class="form-control" tabindex="3" value="{{$usuario->apellido}}">
+                        <input type="text" id="apellido" name="apellido" class="form-control" tabindex="3" value="{{$usuario->apellido}}" required>
                     </div>
                     <div class="col-md-6">
                         <label for="facultad" class="form-label">Facultad</label>
@@ -99,8 +99,8 @@
                     <div class="col-md-6">
                         <label for="genero" class="form-label">Género</label>
                         <select id="genero" name="genero" class="form-control" tabindex="6">
-                            <option value="Femenino" {{$usuario->genero == 'Femenino' ? 'selected' : ''}}>Femenino</option>
-                            <option value="Masculino" {{$usuario->genero == 'Masculino' ? 'selected' : ''}}>Masculino</option>
+                            <option value="F" {{$usuario->genero == 'F' ? 'selected' : ''}}>Femenino</option>
+                            <option value="M" {{$usuario->genero == 'M' ? 'selected' : ''}}>Masculino</option>
                         </select>
                     </div>
                 </div>
@@ -116,21 +116,4 @@
         </div>
     </div>
 </div>
-
-<script>
-function validarFormulario() {
-    var carne = document.getElementById("carne").value;
-    var nombre = document.getElementById("nombre").value;
-    var apellido = document.getElementById("apellido").value;
-
-    if (carne === "" || nombre === "" || apellido === "") {
-        alert("Por favor, complete todos los campos obligatorios.");
-        return false; // Evita que se envíe el formulario si hay campos vacíos.
-    }
-
-    // Si todos los campos obligatorios están completos, el formulario se enviará.
-    return true;
-}
-</script>
-
 @endsection

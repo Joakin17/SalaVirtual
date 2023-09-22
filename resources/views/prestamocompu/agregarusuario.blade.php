@@ -13,24 +13,24 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form action="/guardaruser" method="GET" onsubmit="return validarFormulario()">
+            <form action="/guardaruser" method="GET" >
                 @csrf
 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="carne" class="form-label">Carné</label>
-                        <input type="text" id="carne" name="carne" class="form-control" tabindex="1">
+                        <input type="text" id="carne" name="carne" class="form-control" tabindex="1" required>
                     </div>
                     <div class="col-md-6">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control">
+                        <input type="text" id="nombre" name="nombre" class="form-control" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="apellido" class="form-label">Apellido</label>
-                        <input type="text" id="apellido" name="apellido" class="form-control">
+                        <input type="text" id="apellido" name="apellido" class="form-control" required>
                     </div>
                     <div class="col-md-6">
                         <label for="facultad" class="form-label">Facultad</label>
@@ -99,8 +99,8 @@
                     <div class="col-md-6">
                         <label for="genero" class="form-label">Género</label>
                         <select id="genero" name="genero" class="form-control">
-                        <option value="Femenino" >Femenino</option>
-                        <option value="Masculino">Masculino</option>
+                        <option value="F" >Femenino</option>
+                        <option value="M">Masculino</option>
                         </select>
                     </div>
                 </div>
@@ -117,21 +117,5 @@
         </div>
     </div>
 </div>
-
-<script>
-function validarFormulario() {
-    var carne = document.getElementById("carne").value;
-    var nombre = document.getElementById("nombre").value;
-    var apellido = document.getElementById("apellido").value;
-
-    if (carne === "" || nombre === "" || apellido === "") {
-        alert("Por favor, complete todos los campos obligatorios.");
-        return false; // Evita que se envíe el formulario si hay campos vacíos.
-    }
-
-    // Si todos los campos obligatorios están completos, el formulario se enviará.
-    return true;
-}
-</script>
 
 @endsection

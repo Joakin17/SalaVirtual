@@ -24,52 +24,52 @@ class PrestamosalaController extends Controller
     }
  
     public function guardar(Request $request)
-    {
-        $carnet = $request->get('carne');
-    
-        // Verificar si ya existe un préstamo con el mismo carnet en la misma sala
-        $prestamoExistente = Prestamosala::where('carne', $carnet)
-            ->where('sala', $request->get('sala'))
-            ->first();
-    
-        if ($prestamoExistente) {
-            // Si ya existe un préstamo con el mismo carnet en la misma sala,
-            // puedes manejar el error o mostrar un mensaje de error y redirigir
-            return redirect()->back()->with('error', 'Ya existe un préstamo en esta sala con este carnet.');
-        }
-    
-        // Continuar con el proceso de guardar el préstamo si no hay un préstamo existente
-        $prestamos = new Prestamosala();
-        $prestamos->carne = $carnet;
-        $prestamos->nombre = $request->get('nombre');
-        $prestamos->facultad = $request->get('facultad');
-        $prestamos->carrera = $request->get('carrera');
-        $prestamos->genero = $request->get('genero');
-        $prestamos->sala = $request->get('sala');
-        
-        if ($request->get('sala') == 3) {
-            $prestamos->puesto = $request->get('puesto1');
-            $puesto = $request->get('puesto1');
-        } else {
-            $prestamos->puesto = $request->get('puesto2');
-            $puesto = $request->get('puesto2');
-        }
-    
-        $prestamos->save();
-    
-        $salap = Salasestudio::where('sala', $request->get('sala'))
-            ->where('puesto', $puesto)
-            ->first();
-    
-        $salap->estado = 1;
-        $salap->save();
-    
-        $prestamossala = Prestamosala::all();
-        $usuarios = Usuario::all();
-    
-        return redirect()->route('prestamosala.index');
+{
+    $carnet = $request->get('carne');
+
+    // Verificar si ya existe un préstamo con el mismo carnet en la misma sala
+    $prestamoExistente = Prestamosala::where('carne', $carnet)
+        ->where('sala', $request->get('sala'))
+        ->first();
+
+    if ($prestamoExistente) {
+        // Si ya existe un préstamo con el mismo carnet en la misma sala,
+        // puedes manejar el error o mostrar un mensaje de error y redirigir
+        return redirect()->back()->with('error', 'Ya existe un préstamo en esta sala con este carnet.');
     }
+
+    // Continuar con el proceso de guardar el préstamo si no hay un préstamo existente
+    $prestamos = new Prestamosala();
+    $prestamos->carne = $carnet;
+    $prestamos->nombre = $request->get('nombre');
+    $prestamos->facultad = $request->get('facultad');
+    $prestamos->carrera = $request->get('carrera');
+    $prestamos->genero = $request->get('genero');
+    $prestamos->sala = $request->get('sala');
     
+    if ($request->get('sala') == 3) {
+        $prestamos->puesto = $request->get('puesto1');
+        $puesto = $request->get('puesto1');
+    } else {
+        $prestamos->puesto = $request->get('puesto2');
+        $puesto = $request->get('puesto2');
+    }
+
+    $prestamos->save();
+
+    $salap = Salasestudio::where('sala', $request->get('sala'))
+        ->where('puesto', $puesto)
+        ->first();
+
+    $salap->estado = 1;
+    $salap->save();
+
+    $prestamossala = Prestamosala::all();
+    $usuarios = Usuario::all();
+
+    return redirect()->route('prestamosala.index');
+}
+
 
      
     public function store(Request $request)

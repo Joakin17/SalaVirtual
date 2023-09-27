@@ -40,8 +40,8 @@
                     <label for="sala" class="form-label">Salas Libres</label>
                     <br>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="sala" id="sala" value="3">
-                        <label class="form-check-label" for="inlineRadio1">3</label>
+                        <input class="form-check-input" type="checkbox" name="sala" id="sala" value="3">
+                        <label class="form-check-label" for="inlineCheckbox1">3</label>
                         <select id="puesto1" name="puesto1" class="form-control">
                             <option value=" "> </option>
                             @foreach($salas as $sala)
@@ -52,8 +52,8 @@
                         </select>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="sala" id="sala" value="4">
-                        <label class="form-check-label" for="inlineRadio2">4</label>
+                        <input class="form-check-input" type="checkbox" name="sala" id="sala" value="4" >
+                        <label class="form-check-label" for="inlineCheckbox2">4</label>
                         <select id="puesto2" name="puesto2" class="form-control">
                             <option value=" "> </option>
                             @foreach($salas as $sala)

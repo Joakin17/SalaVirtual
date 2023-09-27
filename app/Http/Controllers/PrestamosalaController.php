@@ -27,15 +27,18 @@ class PrestamosalaController extends Controller
 {
     $carnet = $request->get('carne');
 
-    // Verificar si ya existe un préstamo con el mismo carnet en la misma sala
+    // Verificar si ya existe un préstamo con el mismo carnet en alguna de las salas
     $prestamoExistente = Prestamosala::where('carne', $carnet)
-        ->where('sala', $request->get('sala'))
+        ->where(function ($query) use ($request) {
+            $query->where('sala', $request->get('sala'))
+                  ->orWhere('sala', '!=', $request->get('sala')); // Agregar todas las salas excepto la actual
+        })
         ->first();
 
     if ($prestamoExistente) {
-        // Si ya existe un préstamo con el mismo carnet en la misma sala,
+        // Si ya existe un préstamo con el mismo carnet en alguna sala,
         // puedes manejar el error o mostrar un mensaje de error y redirigir
-        return redirect()->back()->with('error', 'Ya existe un préstamo en esta sala con este carnet.');
+        return redirect()->back()->with('error', 'Ya existe un préstamo en una sala con este carnet.');
     }
 
     // Continuar con el proceso de guardar el préstamo si no hay un préstamo existente

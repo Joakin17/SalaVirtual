@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="card bg-danger">
-                <a href="/estadistica">
+                <a href="/usuarios">
                     <img class="card-img-top" src="/imgs/usu.jpg" alt="Card image cap" style="height: 360px;">
                     <div class="card-body">
                         <h2 class="text-center p-4">Usuarios</h2>
@@ -53,4 +53,5 @@
             </div>
         </div>
     </div>
+    
 @endsection

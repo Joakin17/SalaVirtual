@@ -21,19 +21,15 @@ class PrestamoController extends Controller
     //esta funcion de guardar el prestamo de la compue que se muestra en la tabla de vista sala virtual
     public function guardar(Request $request)
     {
-        // Obtener el carnet del formulario
+
         $carnet = $request->get('carne');
-    
-        // Verificar si ya existe un préstamo con el mismo carnet
+        
         $prestamoExistente = Prestamo::where('carne', $carnet)->first();
     
         if ($prestamoExistente) {
-            // Si ya existe un préstamo con el mismo carnet, puedes manejar el error
-            // o mostrar un mensaje de error y redirigir al usuario de vuelta al formulario.
             return redirect()->back()->with('error', 'Ya existe un préstamo con este carnet.');
         }
     
-        // Si no existe un préstamo con el mismo carnet, procede a crear el nuevo préstamo.
         $prestamos = new Prestamo();
         $prestamos->carne = $carnet;
         $prestamos->nombre = $request->get('nombre');
@@ -41,6 +37,13 @@ class PrestamoController extends Controller
         $prestamos->carrera = $request->get('carrera');
         $prestamos->genero = $request->get('genero');
         $prestamos->pc = $request->get('compu');
+        
+        // Captura la hora actual y guárdala en el campo hora_prestamo
+        // Configura la zona horaria a El Salvador
+        date_default_timezone_set('America/El_Salvador');
+        $prestamos->hora_prestamo = now()->format('H:i'); 
+
+        
         $prestamos->save();
     
         $compu = Compu::find($request->get('compu'));
@@ -49,11 +52,10 @@ class PrestamoController extends Controller
     
         $prestamospc = Prestamo::all();
         $usuarios = Usuario::all();
+        
         return redirect()->route('prestamocompu.index');
     }
     
-
-
     //esta funcion es para guardar el usuario desde el formulario de agregar usuario.
     public function guardaruser(Request $request)
     {

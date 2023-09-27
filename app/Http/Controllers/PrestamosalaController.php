@@ -58,6 +58,11 @@ class PrestamosalaController extends Controller
         $puesto = $request->get('puesto2');
     }
 
+    date_default_timezone_set('America/El_Salvador');
+    $prestamos->hora_prestamo = now()->format('H:i'); 
+
+
+
     $prestamos->save();
 
     $salap = Salasestudio::where('sala', $request->get('sala'))

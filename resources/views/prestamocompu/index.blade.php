@@ -42,6 +42,7 @@
                     <th scope="col">Carné</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Facultad</th>
+                    <th scope="col">Hora De Entrada</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -52,6 +53,7 @@
                     <td>{{$prestamopc->carne }}</td>
                     <td>{{$prestamopc->nombre }}</td>
                     <td>{{$prestamopc->facultad }}</td>
+                    <td>{{$prestamopc->hora_prestamo }}</td>
                     <td><a href="{{route('liberar', ['id'=> $prestamopc->id, 'comp'=>$prestamopc->pc]) }}" class="btn btn-info">Liberar</a></td>
                 </tr>
                 @endforeach

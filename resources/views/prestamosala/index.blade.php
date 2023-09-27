@@ -42,6 +42,7 @@
                     <th scope="col">Carné</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Facultad</th>
+                    <th scope="col">Hora De Entrada</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -53,6 +54,7 @@
                     <td>{{$prestamosala->carne }}</td>
                     <td>{{$prestamosala->nombre }}</td>
                     <td>{{$prestamosala->facultad }}</td>
+                    <td>{{$prestamosala-> hora_prestamo }}</td>
                     <td>
                         <a href="{{route('liberarsala', ['id'=> $prestamosala->id, 'sala'=>$prestamosala->sala]) }}" class="btn btn-info">Liberar</a>
                     </td>

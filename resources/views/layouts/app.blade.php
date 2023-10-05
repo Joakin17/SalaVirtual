@@ -40,6 +40,11 @@
                         </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link navbar-button" href="{{ route('prestamos.americanspace.index') }}">
+                                American Space
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link navbar-button" href="{{ route('estadistica') }}">
                             Estadísticas
                         </a>

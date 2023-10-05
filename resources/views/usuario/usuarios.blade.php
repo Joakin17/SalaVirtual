@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-4">
             <div class="card border border-primary">
-                <img src="{{ asset('imgs/estudiante.jpg') }}" class="card-img-top" alt="Usuario Externo">
+                <img src="{{ asset('imgs/estud.jpg') }}" class="card-img-top" alt="Usuario Externo">
                 <div class="card-body text-center">
                     <p class="card-text"><strong>Estudiantes</strong></p>
                 </div>

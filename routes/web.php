@@ -66,6 +66,9 @@ Route::get('/usuario-externo/editar/{id}', 'UsuarioExternoController@showedit')-
 Route::get('/usarios-externo/showeditar/{nit}', [App\Http\Controllers\UsuarioExternoController::class, 'showeditar'])->name('UsuarioExterno.showeditar');    
 Route::put('/usuario-externo/update/{id}', [App\Http\Controllers\UsuarioExternoController::class, 'update'])->name('updateUsuarioExterno');
 
+Route::get('/prestamos/americanspace', function () {
+    return view('prestamosamericanspace.index');
+})->name('prestamos.americanspace.index');
 
 
 Route::view('/usuarios', 'usuario.usuarios');

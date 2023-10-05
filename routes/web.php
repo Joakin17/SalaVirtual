@@ -70,6 +70,10 @@ Route::get('/prestamos/americanspace', function () {
     return view('prestamosamericanspace.index');
 })->name('prestamos.americanspace.index');
 
+Route::get('/Prestamosspace/showspace/{nit}', [App\Http\Controllers\PrestamosspaceController::class, 'showspace'])->name('Prestamosspace.showspace');
+
+Route::get('/guardarspace', [App\Http\Controllers\PrestamosspaceController::class, 'guardarspace'])->name('guardarspace');
+Route::get('/prestamosspace', [App\Http\Controllers\PrestamosspaceController::class,'index'])->name('prestamosspace.index');
 
 Route::view('/usuarios', 'usuario.usuarios');
 Route::view('/agregaru', 'prestamocompu.agregarusuario');

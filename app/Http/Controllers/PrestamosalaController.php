@@ -61,8 +61,6 @@ class PrestamosalaController extends Controller
     date_default_timezone_set('America/El_Salvador');
     $prestamos->hora_prestamo = now()->format('H:i'); 
 
-
-
     $prestamos->save();
 
     $salap = Salasestudio::where('sala', $request->get('sala'))
@@ -77,9 +75,7 @@ class PrestamosalaController extends Controller
 
     return redirect()->route('prestamosala.index');
 }
-
-
-     
+ 
     public function store(Request $request)
     {
         //

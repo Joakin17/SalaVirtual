@@ -73,10 +73,10 @@ class UsuarioExternoController extends Controller
     public function update(Request $request, $id)
     {
         // Encuentra el usuario externo por su ID
-        $usuarioExterno = UsuarioExterno::findOrFail($id);
+        $usuarioExterno = UsuarioExterno::find($id);
     
         // Obtén el NIT actual del usuario externo
-        $nitActual = $usuarioExterno->Nit;
+        $nitActual = $usuarioExterno->nit;
     
         // Obtén el NIT que se quiere asignar en la edición
         $nitNuevo = $request->input('Nit');

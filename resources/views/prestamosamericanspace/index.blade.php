@@ -36,8 +36,41 @@
         </div>
     </div>
 <!-- Modal -->
- <!-- codigo para la tabla que muestra los prestamos de pc -->
-    
+    <!-- Código para la tabla que muestra los préstamos de espacio -->
+    <div class="table-responsive">
+        <table id="trepartidor" class="table table-bordered table-striped display responsive nowrap" style="width:100%">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col"># de Mesa</th>
+                    <th scope="col"># de Puesto</th>
+                    <th scope="col">NIT</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Institución</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Hora de Entrada</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(\App\Models\Prestamosspace::all() as $prestamo)
+                <tr>
+                    <td>{{ $prestamo->mesa }}</td>
+                    <td>{{ $prestamo->puesto }}</td>
+                    <td>{{ $prestamo->nit }}</td>
+                    <td>{{ $prestamo->nombre }}</td>
+                    <td>{{ $prestamo->institucion }}</td>
+                    <td>{{ $prestamo->tipo }}</td>
+                    <td>{{ $prestamo->hora_entrada }}</td>
+                    <!-- Agrega las columnas restantes -->
+                    <td>
+                    <a href="{{ route('liberar.space', ['id' => $prestamo->id]) }}" class="btn btn-info">Liberar</a>
+
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 
 @endsection

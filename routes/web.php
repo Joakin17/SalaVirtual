@@ -74,6 +74,10 @@ Route::get('/Prestamosspace/showspace/{nit}', [App\Http\Controllers\Prestamosspa
 
 Route::get('/guardarspace', [App\Http\Controllers\PrestamosspaceController::class, 'guardarspace'])->name('guardarspace');
 Route::get('/prestamosspace', [App\Http\Controllers\PrestamosspaceController::class,'index'])->name('prestamosspace.index');
+Route::get('/liberar/{id}', 'App\Http\Controllers\PrestamosspaceController@liberarspace')->name('liberar.space');
+
+
+
 
 Route::view('/usuarios', 'usuario.usuarios');
 Route::view('/agregaru', 'prestamocompu.agregarusuario');

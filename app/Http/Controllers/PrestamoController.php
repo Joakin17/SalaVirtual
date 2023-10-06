@@ -163,35 +163,26 @@ class PrestamoController extends Controller
                 ->with('error', 'Usuario no encontrado');
         }
     
-        // Obtén el carné actual del usuario
         $carneActual = $usuario->carne;
-    
-        // Obtén el carné que se quiere asignar en la edición
         $carneNuevo = $request->input('carne');
     
-        // Verifica si el carné nuevo es diferente al carné actual
         if ($carneNuevo != $carneActual) {
-            // Verifica si ya existe un usuario con el mismo carné nuevo
             $usuarioExistente = Usuario::where('carne', $carneNuevo)->first();
     
             if ($usuarioExistente) {
-                // El carné nuevo ya está en uso por otro usuario, muestra un mensaje de error
                 return redirect()->back()->with('error', 'El carné ya está registrado.');
             }
         }
     
-        // Si todo está bien, actualiza los campos del usuario con los valores del formulario
         $usuario->carne = $carneNuevo;
         $usuario->nombre = $request->input('nombre');
         $usuario->apellido = $request->input('apellido');
         $usuario->facultad = $request->input('facultad');
         $usuario->carrera = $request->input('carrera');
         $usuario->genero = $request->input('genero');
-    
-        // Guarda los cambios en la base de datos
+
         $usuario->save();
-    
-        // Redirige de vuelta a la vista home con un mensaje de éxito
+
         return redirect()->route('home', $id)
             ->with('success', 'Usuario actualizado correctamente');
     }

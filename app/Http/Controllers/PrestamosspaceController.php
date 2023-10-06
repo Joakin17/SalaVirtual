@@ -19,14 +19,21 @@ class PrestamosspaceController extends Controller
     
     public function guardarspace(Request $request)
     {
+        $nit = $request->get('nit');
+    
+        $prestamoExistente = Prestamosspace::where('nit', $nit)->first();
+    
+        if ($prestamoExistente) {
+
+            return redirect()->back()->with('error', 'Ya existe un préstamo con este NIT.');
+        }
         $prestamo = new Prestamosspace();
-        $prestamo->nit = $request->get('nit');
+        $prestamo->nit = $nit;
         $prestamo->nombre = $request->get('nombre');
         $prestamo->institucion = $request->get('institucion');
         $prestamo->genero = $request->get('genero');
-        $prestamo->mesa = $request->get('mesa'); // Guarda el número de mesa
+        $prestamo->mesa = $request->get('mesa'); 
     
-        // Verifica qué puesto fue seleccionado y guárdalo en función del número de mesa
         $mesa = $request->get('mesa');
         if ($mesa == 1) {
             $prestamo->puesto = $request->get('puesto1');
@@ -40,8 +47,7 @@ class PrestamosspaceController extends Controller
         $prestamo->hora_entrada = now();
     
         $prestamo->save();
-    
-        // Actualiza el estado de la mesa seleccionada sin importar el puesto
+
         $salap = Salaspace::where('mesa', $mesa)
             ->where('puesto', $puesto)
             ->first();
@@ -62,11 +68,9 @@ class PrestamosspaceController extends Controller
     {
         $prestamo = Prestamosspace::find($id);
 
-        // Encuentra la mesa y el puesto asociados con el préstamo
         $mesa = $prestamo->mesa;
         $puesto = $prestamo->puesto;
 
-        // Actualiza el estado de la mesa y el puesto a 0 (libre)
         $salap = Salaspace::where('mesa', $mesa)
             ->where('puesto', $puesto)
             ->first();
@@ -76,7 +80,6 @@ class PrestamosspaceController extends Controller
             $salap->save();
         }
 
-        // Elimina el préstamo
         $prestamo->delete();
 
         return redirect('/prestamosspace');
@@ -93,8 +96,6 @@ class PrestamosspaceController extends Controller
         }
     
         $salaspace = Salaspace::all();
-    
-    
         return view('prestamosamericanspace.prestarspace', ['usuario' => $usuario, 'salaspace' => $salaspace]);
     }
     

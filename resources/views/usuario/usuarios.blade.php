@@ -12,7 +12,7 @@
                     <p class="card-text"><strong>Estudiantes</strong></p>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="/estudiante" class="btn btn-primary">ir a Usurios Estudiante</a>
+                    <a href="/estudiante" class="btn btn-primary">ir a Usuarios Estudiante</a>
                 </div>
             </div>
         </div>

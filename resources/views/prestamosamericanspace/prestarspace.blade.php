@@ -33,7 +33,7 @@
                     <input type="text" id="nombre" name="nombre" class="form-control" value="{{$usuario->nombre}}"  readonly>
                 </div>
                 <div class="mb-3">
-                    <label for="tipo" class="form-label">Género</label>
+                    <label for="tipo" class="form-label">Tipo</label>
                     <input type="text" id="tipo" name="tipo" class="form-control" value="{{ $usuario->tipo }}" readonly>
                 </div>
                 <div class="mb-3">
@@ -69,7 +69,7 @@
             <div class="col-md-12">
                 <div class="mb-3">
                     <button class="btn btn-primary" style="margin-right: 10px;">Prestar</button>
-                    <a href="#" class="btn btn-secondary">Regresar</a>
+                    <a href="{{ route('prestamosspace.index') }}" class="btn btn-secondary">Regresar</a>
                 </div>
             </div>
         </div>

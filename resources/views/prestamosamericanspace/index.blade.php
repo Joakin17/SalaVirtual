@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <h1>Préstamos de salas de American Space</h1>
+    <h1>Préstamos de Salas de American Space</h1>
     <!-- boton que muestra el modal -->
     <div class="mb-3">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">

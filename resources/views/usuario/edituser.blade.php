@@ -39,8 +39,8 @@
                             <option value="FACULTAD DE CIENCIAS EMPRESARIALES" {{$usuario->facultad == 'FACULTAD DE CIENCIAS EMPRESARIALES' ? 'selected' : ''}}>FACULTAD DE CIENCIAS EMPRESARIALES</option>
                             <option value="FACULTAD DE INGENIERIA Y ARQUITECTURA" {{$usuario->facultad == 'FACULTAD DE INGENIERIA Y ARQUITECTURA' ? 'selected' : ''}}>FACULTAD DE INGENIERIA Y ARQUITECTURA</option>
                             <option value="FACULTAD DE CIENCIAS Y HUMANIDADES" {{$usuario->facultad == 'FACULTAD DE CIENCIAS Y HUMANIDADES' ? 'selected' : ''}}>FACULTAD DE CIENCIAS Y HUMANIDADES</option>
-                            <option value="FACULTAD DE CIENCIA DE LA SALUD" {{$usuario->facultad == 'FACULTAD DE CIENCIA DE LA SALUD' ? 'selected' : ''}}>FACULTAD DE CIENCIA DE LA SALUD</option>
-                            <option value="Escuela de Posgrados" {{$usuario->facultad == 'Escuela de Posgrados' ? 'selected' : ''}}>ESCUELA DE POSGRADOS</option>
+                            <option value="FACULTAD DE CIENCIAS DE LA SALUD" {{$usuario->facultad == 'FACULTAD DE CIENCIAS DE LA SALUD' ? 'selected' : ''}}>FACULTAD DE CIENCIA DE LA SALUD</option>
+                            <option value="ESCUELA DE POSGRADOS" {{$usuario->facultad == 'ESCUELA DE POSGRADOS' ? 'selected' : ''}}>ESCUELA DE POSGRADOS</option>
                         </select>
                     </div>
                 </div>

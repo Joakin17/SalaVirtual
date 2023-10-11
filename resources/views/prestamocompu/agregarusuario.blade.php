@@ -38,7 +38,7 @@
                             <option value="FACULTAD DE CIENCIAS EMPRESARIALES">FACULTAD DE CIENCIAS EMPRESARIALES</option>
                             <option value="FACULTAD DE INGENIERIA Y ARQUITECTURA">FACULTAD DE INGENIERIA Y ARQUITECTURA</option>
                             <option value="FACULTAD DE CIENCIAS Y HUMANIDADES">FACULTAD DE CIENCIAS Y HUMANIDADES</option>
-                            <option value="FACULTAD DE CIENCIA DE LA SALUD">FACULTAD DE CIENCIA DE LA SALUD</option>
+                            <option value="FACULTAD DE CIENCIA DE LA SALUD">FACULTAD DE CIENCIAS DE LA SALUD</option>
                             <option value="Escuela de Posgrados">ESCUELA DE POSGRADOS</option>
                         </select>
                     </div>

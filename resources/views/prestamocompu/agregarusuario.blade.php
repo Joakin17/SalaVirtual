@@ -80,6 +80,7 @@
                             <option value="Licenciatura en Ciencias de la Educación con Especialidad en Educación Básica">Licenciatura en Ciencias de la Educación con Especialidad en Educación Básica</option>
                             <option value="Licenciatura en Ciencias de la Educación con Especialidad en educacion parvularia">Licenciatura en Ciencias de la Educación con Especialidad en Educación Parvularia</option>
                             <option value="Licenciatura en Ciencias de la Educación con Especialidad en Idioma Inglés">Licenciatura en Ciencias de la Educación con Especialidad en Idioma Inglés</option>
+                            <option value="Licenciatura en Ciencias de la Educación con Especialidad Direccion y Administracion Escolar">Licenciatura en Ciencias de la Educación con Especialidad en Direccion y Administracion Escolar</option>
                             <option value="Licenciatura en Ciencias Religiosas">Licenciatura en Ciencias Religiosas</option>
                             <option value="Licenciatura en Idioma Inglés (Semi presencial)">Licenciatura en Idioma Inglés (Semi presencial)</option>
                             <option value="Licenciatura en Ciencias de la Educación con Especialidad en Educación Básica (Semi presencial)">Licenciatura en Ciencias de la Educación con Especialidad en Educación Básica (Semi presencial)</option>

@@ -27,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('estadistica/salas', 'App\Http\Controllers\EstadisticasalaController');
     
     Route::get('/guardarpres', [App\Http\Controllers\PrestamoController::class, 'guardar'])->name('guardar');
+    Route::get('/guardarspaces', [App\Http\Controllers\PrestamoController::class, 'guardar'])->name('guardarspaces');
     Route::get('/guardarsala', [App\Http\Controllers\PrestamosalaController::class, 'guardar'])->name('guardar');
     Route::get('/guardaruser', [App\Http\Controllers\PrestamoController::class, 'guardaruser'])->name('guardaruser');
     
@@ -44,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/estasalasgenero', [App\Http\Controllers\EstadisticasalaController::class, 'genero'])->name('genero');
     
     Route::get('/prestamocompus/showedit/{carne}', [App\Http\Controllers\PrestamoController::class, 'showedit'])->name('prestamocompus.showedit');
+    Route::get('/prestamocompus/showspace/{nit}', [App\Http\Controllers\PrestamoController::class, 'showspace'])->name('prestamocompus.showspace');
     Route::put('/prestamocompus/update/{id}', [App\Http\Controllers\PrestamoController::class, 'update'])->name('prestamocompus.update');
     
     Route::get('/prestamocompu/index', [App\Http\Controllers\PrestamoController::class, 'index'])->name('prestamocompu.index');

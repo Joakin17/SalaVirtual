@@ -7,6 +7,8 @@ use App\Models\Prestamo;
 use App\Models\Usuario;
 use App\Models\Compu;
 use App\Models\Estadistica;
+use App\Models\UsuarioExterno; 
+use App\Models\Salaspace; 
 
 class PrestamoController extends Controller
 {
@@ -55,7 +57,47 @@ class PrestamoController extends Controller
         
         return redirect()->route('prestamocompu.index');
     }
+    public function guardarspaces(Request $request)
+{
+    // Obtén los datos del formulario
+    $nit = $request->input('nit');
+    $institucion = $request->input('institucion');
+    $genero = $request->input('genero');
+    $nombre = $request->input('nombre');
+    $tipo = $request->input('tipo');
+    $compu = $request->input('compu');
+
+    // Verifica si la computadora seleccionada está disponible
+    $compuDisponible = Compu::where('numero', $compu)->where('estado', 0)->first();
+
+    if (!$compuDisponible) {
+        return redirect()->back()->with('error', 'La computadora seleccionada no está disponible.');
+    }
+
+    // Crea un nuevo registro de prestamo para usuario externo
+    $prestamo = new Prestamo();
+    $prestamo->carne = $nit;
+    $prestamo->facultad = $institucion;
+    $prestamo->genero = $genero;
+    $prestamo->nombre = $nombre;
+    $prestamo->carrera = $tipo;
+    $prestamo->pc = $compu;
+
+    // Captura la hora actual y guárdala en el campo hora_prestamo
+    // Configura la zona horaria a El Salvador
+    date_default_timezone_set('America/El_Salvador');
+    $prestamo->hora_prestamo = now()->format('H:i');
+
+    $prestamo->save();
+
+    // Actualiza el estado de la computadora a prestada}
     
+    $compuDisponible->estado = 1;
+    $compuDisponible->save();
+
+    return redirect()->route('prestamosspace.index')->with('success', 'Prestamo registrado exitosamente.');
+}
+
     //esta funcion es para guardar el usuario desde el formulario de agregar usuario.
     public function guardaruser(Request $request)
     {
@@ -112,6 +154,20 @@ class PrestamoController extends Controller
             $compus  = Compu::All();
             return view('prestamocompu.prestar')->with(['usuario'=>$usuario, 'compus'=>$compus]);
         }
+    }
+    // esta funcion es para el modal que busca por nit para prestar
+    public function showspace(Request $request)
+    {
+        $busca = $request->get('Nit'); 
+        $usuario = UsuarioExterno::where('Nit', $busca)->first(); 
+    
+        if (!$usuario) {
+            return view('usuario.agregarusuarioext')->with(['busca' => $busca]);
+        }
+    
+        $compus  = Compu::All();
+        return view('prestamocompu.prestarext', ['usuario' => $usuario, 'compus'=>$compus]);
+    
     }
 
     //esta funcion es para el model para buscar por carnet y editar el usuario.

@@ -57,10 +57,10 @@
 
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <button class="btn btn-primary">Prestar</button>
+                        <button class="custom-button">Prestar</button>
                     </div>
                     <div class="col-md-6">
-                        <a href="{{ route('prestamocompu.index') }}" class="btn btn-secondary">Regresar a Prestamos</a>
+                        <a href="{{ route('prestamocompu.index') }}" class="custom-button">Regresar a Prestamos</a>
                     </div>
                 </div>
             </form>
@@ -68,33 +68,23 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#prestamo-form').submit(function (event) {
-            event.preventDefault(); // Evitar el envío del formulario por defecto
-
-            var carne = $('#carne').val();
-            var compu = $('#compu').val();
-
-            // Realiza una petición AJAX para verificar si ya existe un préstamo con el mismo carnet
-            $.ajax({
-                url: '/verificar-prestamo/' + carne,
-                type: 'GET',
-                success: function (data) {
-                    if (data.existe) {
-                        alert('Ya existe un préstamo con este carnet.');
-                    } else {
-                        // Si no existe, continúa con el envío del formulario
-                        $('#prestamo-form').unbind('submit').submit();
-                    }
-                },
-                error: function () {
-                    // Maneja errores de la petición AJAX aquí
-                }
-            });
-        });
-    });
-</script>
+<style>
+    .custom-button {
+        background-color: #9D2720;
+        color: #F6C03D;
+        border: none;
+        padding: 8px 16px;
+        margin: 5px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .custom-button:hover {
+        background-color: #F6C03D;
+        color: #9D2720;
+        transition: 0.3s;
+    }
+</style>
 
 @endsection

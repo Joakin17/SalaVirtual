@@ -5,13 +5,31 @@
     <h1>Préstamos de Computadoras</h1>
     <!-- botones para abrir los modales -->
     <div class="mb-3">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEstudiante">
-            Prestar Estudiante
-        </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUsuarioExterno">
-            Prestar Usuario Externo
-        </button>
-    </div>
+    <button type="button" class="custom-button" data-toggle="modal" data-target="#modalEstudiante">
+        Prestar Estudiante
+    </button>
+    <button type="button" class="custom-button" data-toggle="modal" data-target="#modalUsuarioExterno">
+        Prestar Usuario Externo
+    </button>
+</div>
+<style>
+    .custom-button {
+        background-color: #9D2720;
+        color: #F6C03D;
+        border: none;
+        padding: 8px 16px;
+        margin: 5px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .custom-button:hover {
+        background-color: #F6C03D;
+        color: #9D2720;
+        transition: 0.3s;
+    }
+</style>
 
     <!-- Modal para estudiantes -->
     <div class="modal fade" id="modalEstudiante" tabindex="-1" role="dialog" aria-labelledby="modalEstudianteLabel" aria-hidden="true">
@@ -31,7 +49,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" style="margin-right:10px;">Buscar</button>
+                        <button class="custom-button" style="margin-right:10px;">Buscar</button>
                     </form>
                 </div>
             </div>
@@ -56,7 +74,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" style="margin-right:10px;">Buscar Usuario Externo</button>
+                        <button type="submit" class="custom-button" style="margin-right:10px;">Buscar Usuario Externo</button>
                     </div>
                 </form>
             </div>
@@ -86,7 +104,7 @@
                     <td>{{$prestamopc->facultad }}</td>
                     <td>Estudiante</td>
                     <td>{{$prestamopc->hora_prestamo }}</td>
-                    <td><a href="{{route('liberar', ['id'=> $prestamopc->id, 'comp'=>$prestamopc->pc]) }}" class="btn btn-info">Liberar</a></td>
+                    <td><a href="{{route('liberar', ['id'=> $prestamopc->id, 'comp'=>$prestamopc->pc]) }}" class="custom-button">Liberar</a></td>
                 </tr>
                 @endforeach
                 
@@ -100,7 +118,7 @@
                     <td>{{ $prestamopcspace->hora_prestamo }}</td>
                     <td>
                         <!-- Agrega las acciones que desees, como liberar, editar, etc. -->
-                        <a href="{{ route('liberarpcspace', ['id' => $prestamopcspace->id, 'comp' => $prestamopcspace->pc]) }}" class="btn btn-info">Liberar</a>                    </td>
+                        <a href="{{ route('liberarpcspace', ['id' => $prestamopcspace->id, 'comp' => $prestamopcspace->pc]) }}" class="custom-button">Liberar</a>                    </td>
                 </tr>
                 @endforeach
             </tbody>

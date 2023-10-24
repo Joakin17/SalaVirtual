@@ -68,11 +68,29 @@
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
-                    <button class="btn btn-primary" style="margin-right: 10px;">Prestar</button>
-                    <a href="{{ route('prestamosspace.index') }}" class="btn btn-secondary">Regresar</a>
+                    <button class="custom-button" style="margin-right: 10px;">Prestar</button>
+                    <a href="{{ route('prestamosspace.index') }}" class="custom-button">Regresar a sala de american space</a>
                 </div>
             </div>
         </div>
     </form>
 </div>
+<style>
+    .custom-button {
+        background-color: #9D2720;
+        color: #F6C03D;
+        border: none;
+        padding: 8px 16px;
+        margin: 5px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .custom-button:hover {
+        background-color: #F6C03D;
+        color: #9D2720;
+        transition: 0.3s;
+    }
+</style>
 @endsection

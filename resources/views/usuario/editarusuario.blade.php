@@ -55,14 +55,33 @@
 
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <button class="btn btn-primary">Actualizar Usuario Externo</button>
+                        <button class="custom-button">Actualizar Usuario Externo</button>
                     </div>
+                    
                     <div class="col-md-6">
-                        <a href="/usuarios" class="btn btn-secondary">Regresar a Usuarios Externos</a>
+                        <a href="/usuarios" class="custom-button">Regresar a Usuarios Externos</a>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<style>
+    .custom-button {
+        background-color: #9D2720;
+        color: #F6C03D;
+        border: none;
+        padding: 8px 16px;
+        margin: 5px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .custom-button:hover {
+        background-color: #F6C03D;
+        color: #9D2720;
+        transition: 0.3s;
+    }
+</style>
 @endsection

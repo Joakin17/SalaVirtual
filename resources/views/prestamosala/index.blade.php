@@ -4,7 +4,7 @@
 <div class="container">
     <h1>Préstamos de Salas de Estudio</h1>
         <!-- boton para abrir el modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    <button type="button" class="custom-button" data-toggle="modal" data-target="#exampleModal">
         Prestar
     </button>
     <br><br>
@@ -26,7 +26,7 @@
             </div>
           </div>
             <div class="modal-footer">
-              <button class="btn btn-primary" style="margin-right:10px;">Buscar</button>
+              <button class="custom-button" style="margin-right:10px;">Buscar</button>
           </form>
           </div>
         </div>
@@ -56,7 +56,7 @@
                     <td>{{$prestamosala->facultad }}</td>
                     <td>{{$prestamosala-> hora_prestamo }}</td>
                     <td>
-                        <a href="{{route('liberarsala', ['id'=> $prestamosala->id, 'sala'=>$prestamosala->sala]) }}" class="btn btn-info">Liberar</a>
+                        <a href="{{route('liberarsala', ['id'=> $prestamosala->id, 'sala'=>$prestamosala->sala]) }}" class="custom-button">Liberar</a>
                     </td>
                 </tr>
                 @endforeach
@@ -64,6 +64,23 @@
         </table>
     </div>
 </div>
-
+<style>
+    .custom-button {
+        background-color: #9D2720;
+        color: #F6C03D;
+        border: none;
+        padding: 8px 16px;
+        margin: 5px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .custom-button:hover {
+        background-color: #F6C03D;
+        color: #9D2720;
+        transition: 0.3s;
+    }
+</style>
 
 @endsection

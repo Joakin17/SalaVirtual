@@ -6,7 +6,7 @@
     <h1>Préstamos de Salas de American Space</h1>
     <!-- boton que muestra el modal -->
     <div class="mb-3">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="custom-button" data-toggle="modal" data-target="#exampleModal">
             Prestar
         </button>
     </div>
@@ -28,7 +28,7 @@
                         <input type="text" class="form-control" id="Nit" name="Nit" placeholder="Ingresar NIT">
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" style="margin-right:10px;">Buscar usuario</button>
+                        <button type="submit" class="custom-button " style="margin-right:10px;">Buscar usuario</button>
                     </div>
                 </form>
                 </div>
@@ -61,9 +61,8 @@
                     <td>{{ $prestamo->institucion }}</td>
                     <td>{{ $prestamo->tipo }}</td>
                     <td>{{ $prestamo->hora_entrada }}</td>
-                    <!-- Agrega las columnas restantes -->
                     <td>
-                    <a href="{{ route('liberar.space', ['id' => $prestamo->id]) }}" class="btn btn-info">Liberar</a>
+                    <a href="{{ route('liberar.space', ['id' => $prestamo->id]) }}" class="custom-button ">Liberar</a>
 
                     </td>
                 </tr>
@@ -72,5 +71,22 @@
         </table>
     </div>
 </div>
-
+<style>
+    .custom-button {
+        background-color: #9D2720;
+        color: #F6C03D;
+        border: none;
+        padding: 8px 16px;
+        margin: 5px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .custom-button:hover {
+        background-color: #F6C03D;
+        color: #9D2720;
+        transition: 0.3s;
+    }
+</style>
 @endsection

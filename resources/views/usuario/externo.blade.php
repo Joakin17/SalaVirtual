@@ -21,7 +21,7 @@
                     <input type="text" class="form-control" id="Nit" name="Nit" placeholder="Ingresar NIT">
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" style="margin-right:10px;">Editar usuario</button>
+                    <button type="submit" class="custom-button" style="margin-right:10px;">Editar usuario</button>
                 </div>
             </form>
             </div>
@@ -39,7 +39,7 @@
                     <p class="card-text"><strong>Agregar Usuario Externo</strong></p>
                 </div>
                 <div class="card-footer text-center">
-                <a href="{{ route('agregarusuarioext') }}" class="btn btn-primary">Agregar Usuario Externo</a>
+                <a href="{{ route('agregarusuarioext') }}" class="custom-button">Agregar Usuario Externo</a>
                 </div>
             </div>
         </div>
@@ -50,11 +50,29 @@
                     <p class="card-text"><strong>Editar Usuario Externo</strong></p>
                 </div>
                 <div class="card-footer text-center">
-                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Editar Usuario Externo</a>
+                <a href="#" class="custom-button" data-toggle="modal" data-target="#exampleModal">Editar Usuario Externo</a>
 
                 </div>
             </div>
         </div>
     </div>
 </div>
+<style>
+    .custom-button {
+        background-color: #9D2720;
+        color: #F6C03D;
+        border: none;
+        padding: 8px 16px;
+        margin: 5px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .custom-button:hover {
+        background-color: #F6C03D;
+        color: #9D2720;
+        transition: 0.3s;
+    }
+</style>
 @endsection

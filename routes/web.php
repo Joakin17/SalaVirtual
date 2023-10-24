@@ -27,11 +27,13 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('estadistica/salas', 'App\Http\Controllers\EstadisticasalaController');
     
     Route::get('/guardarpres', [App\Http\Controllers\PrestamoController::class, 'guardar'])->name('guardar');
-    Route::get('/guardarspaces', [App\Http\Controllers\PrestamoController::class, 'guardar'])->name('guardarspaces');
+    Route::get('/guardarspaces', [App\Http\Controllers\PrestamoController::class, 'guardarspaces'])->name('guardarspaces');
     Route::get('/guardarsala', [App\Http\Controllers\PrestamosalaController::class, 'guardar'])->name('guardar');
     Route::get('/guardaruser', [App\Http\Controllers\PrestamoController::class, 'guardaruser'])->name('guardaruser');
     
     Route::get('/liberar/{id}/{comp}', [App\Http\Controllers\PrestamoController::class, 'liberar'])->name('liberar');
+    Route::get('/liberarpcspace/{id}/{comp}', [App\Http\Controllers\PrestamoController::class, 'liberarpcspace'])->name('liberarpcspace');
+
     Route::get('/liberarsala/{id}/{sala}', [App\Http\Controllers\PrestamosalaController::class, 'liberarsala'])->name('liberarsala');
     
     Route::get('/estadisticacompus', [App\Http\Controllers\EstadisticaController::class, 'index'])->name('anualcompus');

@@ -8,17 +8,19 @@ use App\Models\Usuario;
 use App\Models\Compu;
 use App\Models\Estadistica;
 use App\Models\UsuarioExterno; 
-use App\Models\Salaspace; 
+use App\Models\PrestamosPcSpace; 
 
 class PrestamoController extends Controller
 {
 
     public function index()
-    {
-        $prestamospc = Prestamo::all();
-        $usuarios = Usuario::all();
-        return view('prestamocompu.index')->with(['prestamospc'=>$prestamospc]);
-    }
+{
+    $prestamospc = Prestamo::all();
+    $prestamospcspa =  PrestamosPcSpace::all();
+    $usuarios = Usuario::all();
+    return view('prestamocompu.index')->with(['prestamospc' => $prestamospc, 'prestamospcspace' => $prestamospcspa]);
+}
+
 
     //esta funcion de guardar el prestamo de la compue que se muestra en la tabla de vista sala virtual
     public function guardar(Request $request)
@@ -52,51 +54,40 @@ class PrestamoController extends Controller
         $compu->estado = 1;
         $compu->save();
     
-        $prestamospc = Prestamo::all();
-        $usuarios = Usuario::all();
+      
         
         return redirect()->route('prestamocompu.index');
     }
+
     public function guardarspaces(Request $request)
 {
-    // Obtén los datos del formulario
-    $nit = $request->input('nit');
-    $institucion = $request->input('institucion');
-    $genero = $request->input('genero');
-    $nombre = $request->input('nombre');
-    $tipo = $request->input('tipo');
-    $compu = $request->input('compu');
+    $nit = $request->get('nit');
 
-    // Verifica si la computadora seleccionada está disponible
-    $compuDisponible = Compu::where('numero', $compu)->where('estado', 0)->first();
-
-    if (!$compuDisponible) {
-        return redirect()->back()->with('error', 'La computadora seleccionada no está disponible.');
-    }
-
-    // Crea un nuevo registro de prestamo para usuario externo
-    $prestamo = new Prestamo();
-    $prestamo->carne = $nit;
-    $prestamo->facultad = $institucion;
-    $prestamo->genero = $genero;
-    $prestamo->nombre = $nombre;
-    $prestamo->carrera = $tipo;
-    $prestamo->pc = $compu;
-
+    $prestamospcspace = new PrestamosPcSpace();
+    $prestamospcspace->nit = $nit;
+    $prestamospcspace->nombre = $request->get('nombre');
+    $prestamospcspace->institucion = $request->get('institucion');
+    $prestamospcspace->tipo = $request->get('tipo');
+    $prestamospcspace->genero = $request->get('genero');
+    $prestamospcspace->pc = $request->get('compu');
     // Captura la hora actual y guárdala en el campo hora_prestamo
-    // Configura la zona horaria a El Salvador
-    date_default_timezone_set('America/El_Salvador');
-    $prestamo->hora_prestamo = now()->format('H:i');
+        // Configura la zona horaria a El Salvador
+        date_default_timezone_set('America/El_Salvador');
+        $prestamospcspace->hora_prestamo = now()->format('H:i');
 
-    $prestamo->save();
+    $prestamospcspace->save();
 
     // Actualiza el estado de la computadora a prestada}
-    
-    $compuDisponible->estado = 1;
-    $compuDisponible->save();
+    $compu = Compu::find($request->get('compu'));
+    $compu->estado = 1;
+    $compu->save();
 
-    return redirect()->route('prestamosspace.index')->with('success', 'Prestamo registrado exitosamente.');
+    $prestamospcspace = PrestamosPcSpace::all();
+
+    // Envía los datos a la vista 'prestamocompu.index'
+    return redirect()->route('prestamocompu.index');
 }
+
 
     //esta funcion es para guardar el usuario desde el formulario de agregar usuario.
     public function guardaruser(Request $request)
@@ -208,7 +199,18 @@ class PrestamoController extends Controller
         return redirect('/prestamocompus');
 
     }
-
+    public function liberarpcspace($id, $comp)
+    {
+        $prestamoSpace = PrestamosPcSpace::find($id);
+        $prestamoSpace->delete();
+    
+        $compu = Compu::find($comp);
+        $compu->estado = 0;
+        $compu->save();
+        
+        return redirect('/prestamocompus');
+    }
+    
     //esta es la funcion de actualizar usuario 
     public function update(Request $request, $id)
     {

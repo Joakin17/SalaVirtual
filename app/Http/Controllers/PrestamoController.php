@@ -62,7 +62,14 @@ class PrestamoController extends Controller
     public function guardarspaces(Request $request)
     {
         $nit = $request->get('nit');
-
+    
+        // Validación de existencia de un préstamo con el mismo 'nit'
+        $prestamoExistente = PrestamosPcSpace::where('nit', $nit)->first();
+    
+        if ($prestamoExistente) {
+            return redirect()->back()->with('error', 'Ya existe un préstamo con este NIT.');
+        }
+    
         $prestamospcspace = new PrestamosPcSpace();
         $prestamospcspace->nit = $nit;
         $prestamospcspace->nombre = $request->get('nombre');
@@ -70,23 +77,25 @@ class PrestamoController extends Controller
         $prestamospcspace->tipo = $request->get('tipo');
         $prestamospcspace->genero = $request->get('genero');
         $prestamospcspace->pc = $request->get('compu');
+        
         // Captura la hora actual y guárdala en el campo hora_prestamo
-            // Configura la zona horaria a El Salvador
-            date_default_timezone_set('America/El_Salvador');
-            $prestamospcspace->hora_prestamo = now()->format('H:i');
-
+        // Configura la zona horaria a El Salvador
+        date_default_timezone_set('America/El_Salvador');
+        $prestamospcspace->hora_prestamo = now()->format('H:i');
+    
         $prestamospcspace->save();
-
-        // Actualiza el estado de la computadora a prestada}
+    
+        // Actualiza el estado de la computadora a prestada
         $compu = Compu::find($request->get('compu'));
         $compu->estado = 1;
         $compu->save();
-
+    
         $prestamospcspace = PrestamosPcSpace::all();
-
+    
         // Envía los datos a la vista 'prestamocompu.index'
         return redirect()->route('prestamocompu.index');
     }
+    
 
 
     //esta funcion es para guardar el usuario desde el formulario de agregar usuario.

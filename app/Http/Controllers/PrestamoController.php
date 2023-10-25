@@ -60,33 +60,33 @@ class PrestamoController extends Controller
     }
 
     public function guardarspaces(Request $request)
-{
-    $nit = $request->get('nit');
+    {
+        $nit = $request->get('nit');
 
-    $prestamospcspace = new PrestamosPcSpace();
-    $prestamospcspace->nit = $nit;
-    $prestamospcspace->nombre = $request->get('nombre');
-    $prestamospcspace->institucion = $request->get('institucion');
-    $prestamospcspace->tipo = $request->get('tipo');
-    $prestamospcspace->genero = $request->get('genero');
-    $prestamospcspace->pc = $request->get('compu');
-    // Captura la hora actual y guárdala en el campo hora_prestamo
-        // Configura la zona horaria a El Salvador
-        date_default_timezone_set('America/El_Salvador');
-        $prestamospcspace->hora_prestamo = now()->format('H:i');
+        $prestamospcspace = new PrestamosPcSpace();
+        $prestamospcspace->nit = $nit;
+        $prestamospcspace->nombre = $request->get('nombre');
+        $prestamospcspace->institucion = $request->get('institucion');
+        $prestamospcspace->tipo = $request->get('tipo');
+        $prestamospcspace->genero = $request->get('genero');
+        $prestamospcspace->pc = $request->get('compu');
+        // Captura la hora actual y guárdala en el campo hora_prestamo
+            // Configura la zona horaria a El Salvador
+            date_default_timezone_set('America/El_Salvador');
+            $prestamospcspace->hora_prestamo = now()->format('H:i');
 
-    $prestamospcspace->save();
+        $prestamospcspace->save();
 
-    // Actualiza el estado de la computadora a prestada}
-    $compu = Compu::find($request->get('compu'));
-    $compu->estado = 1;
-    $compu->save();
+        // Actualiza el estado de la computadora a prestada}
+        $compu = Compu::find($request->get('compu'));
+        $compu->estado = 1;
+        $compu->save();
 
-    $prestamospcspace = PrestamosPcSpace::all();
+        $prestamospcspace = PrestamosPcSpace::all();
 
-    // Envía los datos a la vista 'prestamocompu.index'
-    return redirect()->route('prestamocompu.index');
-}
+        // Envía los datos a la vista 'prestamocompu.index'
+        return redirect()->route('prestamocompu.index');
+    }
 
 
     //esta funcion es para guardar el usuario desde el formulario de agregar usuario.
@@ -200,16 +200,29 @@ class PrestamoController extends Controller
 
     }
     public function liberarpcspace($id, $comp)
-    {
-        $prestamoSpace = PrestamosPcSpace::find($id);
-        $prestamoSpace->delete();
+{
+    $prestamoSpace = PrestamosPcSpace::find($id);
+    $prestamoSpace->delete();
+
+    // Establecer "Usuario Externo" como Facultad
+    $estadistica = new Estadistica();
+    $estadistica->carne = $prestamoSpace->nit;
+    $estadistica->nombre = $prestamoSpace->nombre;
+    $estadistica->facultad = 'Usuario Externo';
     
-        $compu = Compu::find($comp);
-        $compu->estado = 0;
-        $compu->save();
-        
-        return redirect('/prestamocompus');
-    }
+    // Utilizar el género del préstamo
+    $estadistica->genero = $prestamoSpace->genero;
+    $estadistica->carrera = $prestamoSpace->institucion;
+    $estadistica->pc = $prestamoSpace->pc;
+    $estadistica->save();
+
+    $compu = Compu::find($comp);
+    $compu->estado = 0;
+    $compu->save();
+
+    return redirect('/prestamocompus');
+}
+
     
     //esta es la funcion de actualizar usuario 
     public function update(Request $request, $id)

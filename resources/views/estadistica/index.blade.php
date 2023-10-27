@@ -16,6 +16,11 @@
                 <h2 class="mb-0">Estadísticas de Préstamos de Salas de Estudio</h2>
             </a>
         </div>
+        <div class="col-md-6">
+            <a href="/estadisticasalaspace?year={{ date('Y') }}" class="btn btn-secondary btn-block py-4">
+                <h2 class="mb-0">Estadísticas de sala de american space</h2>
+            </a>
+        </div>
     </div>
 </div>
 

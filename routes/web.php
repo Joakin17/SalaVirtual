@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('prestamosalas', 'App\Http\Controllers\PrestamosalaController');
     Route::resource('estadistica/compus', 'App\Http\Controllers\EstadisticaController');
     Route::resource('estadistica/salas', 'App\Http\Controllers\EstadisticasalaController');
+    Route::resource('estadistica/salaspace', 'App\Http\Controllers\EstadisticasalaspaceController');
     
     Route::get('/guardarpres', [App\Http\Controllers\PrestamoController::class, 'guardar'])->name('guardar');
     Route::get('/guardarspaces', [App\Http\Controllers\PrestamoController::class, 'guardarspaces'])->name('guardarspaces');
@@ -45,6 +46,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/estasalasmensual', [App\Http\Controllers\EstadisticasalaController::class, 'mensual'])->name('mensual');
     Route::get('/estasalasrango', [App\Http\Controllers\EstadisticasalaController::class, 'rango'])->name('rango');
     Route::get('/estasalasgenero', [App\Http\Controllers\EstadisticasalaController::class, 'genero'])->name('genero');
+
+    Route::get('/estadisticasalaspace', [App\Http\Controllers\EstadisticasalaspaceController::class, 'index'])->name('anualsalass');
+    Route::get('/estasalaspacemensual', [App\Http\Controllers\EstadisticasalaspaceController::class, 'mensual'])->name('mensual');
+    Route::get('/estasalaspacerango', [App\Http\Controllers\EstadisticasalaspaceController::class, 'rango'])->name('rango');
+    Route::get('/estasalasspacegenero', [App\Http\Controllers\EstadisticasalaspaceController::class, 'genero'])->name('genero');
     
     Route::get('/prestamocompus/showedit/{carne}', [App\Http\Controllers\PrestamoController::class, 'showedit'])->name('prestamocompus.showedit');
     Route::get('/prestamocompus/showspace/{nit}', [App\Http\Controllers\PrestamoController::class, 'showspace'])->name('prestamocompus.showspace');

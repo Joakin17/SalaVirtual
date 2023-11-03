@@ -83,13 +83,17 @@ Route::middleware(['auth'])->group(function () {
     })->name('prestamos.americanspace.index');
     
     Route::get('/Prestamosspace/showspace/{nit}', [App\Http\Controllers\PrestamosspaceController::class, 'showspace'])->name('Prestamosspace.showspace');
-    
+    Route::get('/Prestamosspace/showestu/{carne}', [App\Http\Controllers\PrestamosspaceController::class, 'showestu'])->name('Prestamosspace.showestu');
+
+   
+
     Route::get('/guardarspace', [App\Http\Controllers\PrestamosspaceController::class, 'guardarspace'])->name('guardarspace');
+    Route::get('/guardarprestamoestudiante', [App\Http\Controllers\PrestamosspaceController::class, 'guardarPrestamoEstudiante'])->name('guardarprestamoestudiante');
+
     Route::get('/prestamosspace', [App\Http\Controllers\PrestamosspaceController::class,'index'])->name('prestamosspace.index');
     Route::get('/liberar/{id}', 'App\Http\Controllers\PrestamosspaceController@liberarspace')->name('liberar.space');
-    
-    
-    
+    Route::get('/liberar-estudiante/{id}', 'App\Http\Controllers\PrestamosspaceController@liberarEstudiante')->name('liberar.estudiante');
+
     
     Route::view('/usuarios', 'usuario.usuarios');
     Route::view('/agregaru', 'prestamocompu.agregarusuario');

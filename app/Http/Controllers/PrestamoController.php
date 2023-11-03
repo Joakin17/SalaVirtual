@@ -209,28 +209,28 @@ class PrestamoController extends Controller
 
     }
     public function liberarpcspace($id, $comp)
-{
-    $prestamoSpace = PrestamosPcSpace::find($id);
-    $prestamoSpace->delete();
+    {
+        $prestamoSpace = PrestamosPcSpace::find($id);
+        $prestamoSpace->delete();
 
-    // Establecer "Usuario Externo" como Facultad
-    $estadistica = new Estadistica();
-    $estadistica->carne = $prestamoSpace->nit;
-    $estadistica->nombre = $prestamoSpace->nombre;
-    $estadistica->facultad = 'Usuario Externo';
-    
-    // Utilizar el género del préstamo
-    $estadistica->genero = $prestamoSpace->genero;
-    $estadistica->carrera = $prestamoSpace->institucion;
-    $estadistica->pc = $prestamoSpace->pc;
-    $estadistica->save();
+        // Establecer "Usuario Externo" como Facultad
+        $estadistica = new Estadistica();
+        $estadistica->carne = $prestamoSpace->nit;
+        $estadistica->nombre = $prestamoSpace->nombre;
+        $estadistica->facultad = 'Usuario Externo';
+        
+        // Utilizar el género del préstamo
+        $estadistica->genero = $prestamoSpace->genero;
+        $estadistica->carrera = $prestamoSpace->institucion;
+        $estadistica->pc = $prestamoSpace->pc;
+        $estadistica->save();
 
-    $compu = Compu::find($comp);
-    $compu->estado = 0;
-    $compu->save();
+        $compu = Compu::find($comp);
+        $compu->estado = 0;
+        $compu->save();
 
-    return redirect('/prestamocompus');
-}
+        return redirect('/prestamocompus');
+    }
 
     
     //esta es la funcion de actualizar usuario 

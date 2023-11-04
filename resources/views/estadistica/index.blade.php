@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="text-center">Biblioteca Miguel de Cervantes</h1>
+<h1 class="text-center">Biblioteca Miguel de Cervantes Estadisticas.</h1>}
+<br>
 
 <div class="cards-list">
     <a href="/estadisticacompus?year={{ date('Y') }}" class="card">
@@ -38,59 +39,60 @@
     </a>
 </div>
 <style>
-    .cards-list {
-        z-index: 0;
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-    
-    }
+   .cards-list {
+    z-index: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0;
+}
 
-    .card {
-        margin: 30px auto;
-        width: 300px;
-        border-radius: 40px;
-        box-shadow: 5px 5px 30px 7px rgba(0, 0, 0, 0.25), -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
-        cursor: pointer;
-        transition: 0.4s;
-        display: flex;
-        flex-direction: column;
-        text-align: center; 
-    }
+.card {
+    margin: 10px; /* Ajustar el margen entre las tarjetas */
+    width: calc(30% - 20px); /* Ajustar el ancho para mostrar más tarjetas en una fila */
+    border-radius: 20px;
+    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.25), -5px -5px 15px 5px rgba(0, 0, 0, 0.22);
+    cursor: pointer;
+    transition: 0.4s;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
 
-    .card .card_image {
-        width: 100%;
-        flex: 1; 
-        border-radius: 40px 40px 0 0;
-    }
+.card .card_image {
+    width: 100%;
+    flex: 1;
+    border-radius: 20px 20px 0 0;
+}
 
-    .card .card_image img {
-        width: 100%;
-        height: 100%;
-        border-radius: 40px 40px 0 0;
-        object-fit: cover;
-    }
+.card .card_image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px 20px 0 0;
+    object-fit: cover;
+}
 
-    .card .card_content {
-        padding: 10px;
-    }
+.card .card_content {
+    padding: 20px; /* Ajustar el relleno del contenido */
+}
 
-    .card .card_title {
-        font-family: sans-serif;
-        font-weight: bold;
-        font-size: 24px; 
-        margin-top: 10px; 
-        height: 60px; 
-    }
+.card .card_title {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 18px; /* Reducir el tamaño del texto del título */
+    margin-top: 10px;
+    height: 60px;
+}
 
-    .card:hover {
-        transform: scale(0.9, 0.9);
-        box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25), -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
-    }
+.card:hover {
+    transform: scale(0.9, 0.9);
+    box-shadow: 5px 5px 15px 10px rgba(0, 0, 0, 0.25), -5px -5px 15px 10px rgba(0, 0, 0, 0.22);
+}
 
-    .title-black {
-        color: black;
-    }
+.title-black {
+    color: black;
+}
+
 </style>
 @endsection

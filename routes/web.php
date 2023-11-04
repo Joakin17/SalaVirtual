@@ -47,7 +47,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/estasalasrango', [App\Http\Controllers\EstadisticasalaController::class, 'rango'])->name('rango');
     Route::get('/estasalasgenero', [App\Http\Controllers\EstadisticasalaController::class, 'genero'])->name('genero');
 
-    Route::get('/estadisticasalaspace', [App\Http\Controllers\EstadisticasalaspaceController::class, 'index'])->name('anualsalass');
+    Route::get('/estadisticasalaspace', [App\Http\Controllers\EstadisticasalaspaceController::class, 'index'])->name('anualsalas');    
     Route::get('/estasalaspacemensual', [App\Http\Controllers\EstadisticasalaspaceController::class, 'mensual'])->name('mensual');
     Route::get('/estasalaspacerango', [App\Http\Controllers\EstadisticasalaspaceController::class, 'rango'])->name('rango');
     Route::get('/estasalasspacegenero', [App\Http\Controllers\EstadisticasalaspaceController::class, 'genero'])->name('genero');

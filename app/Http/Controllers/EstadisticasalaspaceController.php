@@ -93,7 +93,7 @@ class EstadisticasalaspaceController extends Controller
         foreach ($estacompus as $reg) {
             $total += $reg->registros;
         }
-       return view('estadisticasalaspace.rango')->with(['estacompus'=>$estacompus, 'inicio'=>$request->inicio, 'fin'=>$request->fin, 'total'=>$total]);
+       return view('estadisticasalaspace.Rango')->with(['estacompus'=>$estacompus, 'inicio'=>$request->inicio, 'fin'=>$request->fin, 'total'=>$total]);
     }
 
     public function genero(Request $request)

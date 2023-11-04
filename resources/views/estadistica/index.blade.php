@@ -39,21 +39,18 @@
     </a>
 </div>
 <style>
-   .cards-list {
-    z-index: 0;
-    width: 100%;
+.cards-list {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin: 0;
+    justify-content: center; 
+    flex-wrap: wrap; 
 }
 
 .card {
-    margin: 10px; /* Ajustar el margen entre las tarjetas */
-    width: calc(30% - 20px); /* Ajustar el ancho para mostrar más tarjetas en una fila */
-    border-radius: 20px;
-    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.25), -5px -5px 15px 5px rgba(0, 0, 0, 0.22);
-    cursor: pointer;
+    margin: 2px;
+    width: calc(25% - 4px); 
+    max-width: 350px; 
+    border-radius: 10px; 
+    box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.1), -3px -3px 10px 3px rgba(0, 0, 0, 0.1);
     transition: 0.4s;
     display: flex;
     flex-direction: column;
@@ -63,24 +60,25 @@
 .card .card_image {
     width: 100%;
     flex: 1;
-    border-radius: 20px 20px 0 0;
+    border-radius: 10px 10px 0 0;
 }
 
 .card .card_image img {
     width: 100%;
     height: 100%;
-    border-radius: 20px 20px 0 0;
+    border-radius: 10px 10px 0 0;
     object-fit: cover;
 }
 
+
 .card .card_content {
-    padding: 20px; /* Ajustar el relleno del contenido */
+    padding: 20px; 
 }
 
 .card .card_title {
     font-family: sans-serif;
     font-weight: bold;
-    font-size: 18px; /* Reducir el tamaño del texto del título */
+    font-size: 18px; 
     margin-top: 10px;
     height: 60px;
 }

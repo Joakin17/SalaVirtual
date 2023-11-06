@@ -56,6 +56,20 @@
         </div>
     </form>
 </div>
+
+<script>
+    // Espera a que el documento esté listo
+    document.addEventListener('DOMContentLoaded', function() {
+        const printButton = document.getElementById('printButton');
+
+        // Agrega un evento 'click' al botón de impresión
+        printButton.addEventListener('click', function() {
+            // Después de hacer clic en el botón, imprimir la página actual
+            window.print();
+        });
+    });
+</script>
+
 <style>
     .custom-button {
         background-color: #9D2720;

@@ -59,7 +59,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/prestamocompu/index', [App\Http\Controllers\PrestamoController::class, 'index'])->name('prestamocompu.index');
     Route::get('/prestamosala/index', [App\Http\Controllers\PrestamosalaController::class, 'index'])->name('prestamosala.index');
     
-    
+
     Route::get('/usuarios', function () {
     return view('usuario.usuarios');
     })->name('usuarios');
@@ -85,7 +85,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/Prestamosspace/showspace/{nit}', [App\Http\Controllers\PrestamosspaceController::class, 'showspace'])->name('Prestamosspace.showspace');
     Route::get('/Prestamosspace/showestu/{carne}', [App\Http\Controllers\PrestamosspaceController::class, 'showestu'])->name('Prestamosspace.showestu');
 
-   
 
     Route::get('/guardarspace', [App\Http\Controllers\PrestamosspaceController::class, 'guardarspace'])->name('guardarspace');
     Route::get('/guardarprestamoestudiante', [App\Http\Controllers\PrestamosspaceController::class, 'guardarPrestamoEstudiante'])->name('guardarprestamoestudiante');
@@ -94,7 +93,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/liberar/{id}', 'App\Http\Controllers\PrestamosspaceController@liberarspace')->name('liberar.space');
     Route::get('/liberar-estudiante/{id}', 'App\Http\Controllers\PrestamosspaceController@liberarEstudiante')->name('liberar.estudiante');
 
-    
+ 
     Route::view('/usuarios', 'usuario.usuarios');
     Route::view('/agregaru', 'prestamocompu.agregarusuario');
     Route::view('/estadistica', 'estadistica.index')->name('estadistica');

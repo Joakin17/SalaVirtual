@@ -68,6 +68,19 @@
     </div>
 </div>
 
+<script>
+    // Espera a que el documento esté listo
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+
+        // Agrega un evento 'submit' al formulario
+        form.addEventListener('submit', function() {
+            // Después de enviar el formulario, imprimir la página actual
+            window.print();
+        });
+    });
+</script>
+
 <style>
     .custom-button {
         background-color: #9D2720;

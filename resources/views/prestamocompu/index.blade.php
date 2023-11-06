@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+
     <h1>Préstamos de Computadoras</h1>
     <!-- botones para abrir los modales -->
     <div class="mb-3">
@@ -96,18 +97,20 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($prestamospc as $prestamopc)
-                <tr data-id="{{ $prestamopc->id }}">
-                    <td>{{$prestamopc->pc}}</td>
-                    <td>{{$prestamopc->carne }}</td>
-                    <td>{{$prestamopc->nombre }}</td>
-                    <td>{{$prestamopc->facultad }}</td>
-                    <td>Estudiante</td>
-                    <td>{{$prestamopc->hora_prestamo }}</td>
-                    <td><a href="{{route('liberar', ['id'=> $prestamopc->id, 'comp'=>$prestamopc->pc]) }}" class="custom-button">Liberar</a></td>
-                </tr>
+            @foreach ($prestamospc as $prestamopc)
+                    <tr data-id="{{ $prestamopc->id }}">
+                        <td>{{ $prestamopc->pc }}</td>
+                        <td>{{ $prestamopc->carne }}</td>
+                        <td>{{ $prestamopc->nombre }}</td>
+                        <td>{{ $prestamopc->facultad }}</td>
+                        <td>Estudiante</td>
+                        <td>{{ $prestamopc->hora_prestamo }}</td>
+                        <td>
+                            <a href="{{ route('liberar', ['id'=> $prestamopc->id, 'comp'=>$prestamopc->pc]) }}" class="custom-button">Liberar</a>
+                        </td>
+                    </tr>
                 @endforeach
-                
+
                 @foreach ($prestamospcspace as $prestamopcspace)
                 <tr>
                     <td>{{ $prestamopcspace->pc }}</td>
@@ -125,4 +128,5 @@
         </table>
     </div>
 </div>
+
 @endsection

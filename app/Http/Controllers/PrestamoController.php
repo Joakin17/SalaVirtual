@@ -9,6 +9,8 @@ use App\Models\Compu;
 use App\Models\Estadistica;
 use App\Models\UsuarioExterno; 
 use App\Models\PrestamosPcSpace; 
+use Illuminate\Support\Facades\Storage;
+use Dompdf\Dompdf;
 
 class PrestamoController extends Controller
 {
@@ -33,7 +35,7 @@ class PrestamoController extends Controller
         if ($prestamoExistente) {
             return redirect()->back()->with('error', 'Ya existe un préstamo con este carnet.');
         }
-    
+       
         $prestamos = new Prestamo();
         $prestamos->carne = $carnet;
         $prestamos->nombre = $request->get('nombre');
@@ -54,9 +56,21 @@ class PrestamoController extends Controller
         $compu->estado = 1;
         $compu->save();
     
-      
-        
-        return redirect()->route('prestamocompu.index');
+        $carne = $request->get('carne');
+        $nombre = $request->get('nombre');
+        $numeroPc = $request->get('compu');
+        $facultad = $request->get('facultad');
+        $carrera = $request->get('carrera');
+        $horaEntrada = now()->format('H:i'); // Obtener la hora actual
+    
+        return view('prestamocompu.ticket', [
+            'carne' => $carne,
+            'nombre' => $nombre,
+            'numeroPc' => $numeroPc,
+            'facultad' => $facultad,
+            'carrera' => $carrera,
+            'horaEntrada' => $horaEntrada
+        ]);
     }
 
     public function guardarspaces(Request $request)
@@ -93,10 +107,19 @@ class PrestamoController extends Controller
         $prestamospcspace = PrestamosPcSpace::all();
     
         // Envía los datos a la vista 'prestamocompu.index'
-        return redirect()->route('prestamocompu.index');
-    }
-    
+        $nit = $request->get('nit');
+        $nombre = $request->get('nombre');
+        $numeroPc = $request->get('compu');
+        $horaEntrada = now()->format('H:i'); // Obtener la hora actual
+    return view('prestamocompu.ticketspace', [
+        'nit' => $nit,
+        'nombre' => $nombre,
+        'numeroPc' => $numeroPc,
+        'horaEntrada' => $horaEntrada,
 
+    ]);
+}
+    
 
     //esta funcion es para guardar el usuario desde el formulario de agregar usuario.
     public function guardaruser(Request $request)
@@ -213,13 +236,10 @@ class PrestamoController extends Controller
         $prestamoSpace = PrestamosPcSpace::find($id);
         $prestamoSpace->delete();
 
-        // Establecer "Usuario Externo" como Facultad
         $estadistica = new Estadistica();
         $estadistica->carne = $prestamoSpace->nit;
         $estadistica->nombre = $prestamoSpace->nombre;
         $estadistica->facultad = 'Usuario Externo';
-        
-        // Utilizar el género del préstamo
         $estadistica->genero = $prestamoSpace->genero;
         $estadistica->carrera = $prestamoSpace->institucion;
         $estadistica->pc = $prestamoSpace->pc;

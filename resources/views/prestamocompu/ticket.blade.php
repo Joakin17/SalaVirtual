@@ -42,7 +42,7 @@
 </head>
 <body>
     <h1>Biblioteca Miguel De Cervantes</h1>
-    <p>Carné: {{ $carne }}</p>
+    <p>Carnet: {{ $carne }}</p>
     <p>Usuario: {{ $nombre }}</p>
     <p>Hora de Entrada: {{ $horaEntrada }}</p>
     @php

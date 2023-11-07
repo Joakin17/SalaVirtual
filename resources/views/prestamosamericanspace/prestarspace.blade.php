@@ -10,7 +10,7 @@
         </div>
     @endif
 
-    <form action="{{ route('guardarspace') }}" method="GET">
+    <form action="{{ route('guardarspace') }}" method="GET" id="form">
         @csrf
         <div class="row">
             <div class="col-md-6">
@@ -75,6 +75,26 @@
         </div>
     </form>
 </div>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('form').addEventListener('submit', function(event) {
+                var puesto1 = document.getElementById('puesto1');
+                var puesto2 = document.getElementById('puesto2');
+                var mesa1Checked = document.querySelector('input[name="mesa"][value="1"]').checked;
+                var mesa2Checked = document.querySelector('input[name="mesa"][value="2"]').checked;
+
+                if ((mesa1Checked && puesto1.value.trim() === '') || (mesa2Checked && puesto2.value.trim() === '')) {
+                    alert('Por favor, seleccione su respectivo puesto');
+                    event.preventDefault();
+                }
+                if (!mesa1Checked && !mesa2Checked) {
+                    alert('Por favor, seleccione al menos una mesa con su respectivo puesto');
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+
 <style>
     .custom-button {
         background-color: #9D2720;

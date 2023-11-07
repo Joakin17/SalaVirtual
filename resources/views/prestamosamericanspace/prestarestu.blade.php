@@ -13,7 +13,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form action="/guardarprestamoestudiante" method="GET">
+            <form action="/guardarprestamoestudiante" method="GET" id="form">
                 @csrf
 
                 <div class="row mb-3">
@@ -48,7 +48,7 @@
                         <input type="text" id="genero" name="genero" class="form-control" value="{{$usuario->genero}}" readonly>
                     </div>
                     <div class="col-md-6">
-                   
+
                     <div class="form-check form-check-inline">
                     <label for="mesa" class="form-label">Mesas Libres</label>
                     <br>
@@ -89,7 +89,25 @@
         </div>
     </div>
 </div>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('form').addEventListener('submit', function(event) {
+                var puesto1 = document.getElementById('puesto1');
+                var puesto2 = document.getElementById('puesto2');
+                var mesa1Checked = document.querySelector('input[name="mesa"][value="1"]').checked;
+                var mesa2Checked = document.querySelector('input[name="mesa"][value="2"]').checked;
 
+                if ((mesa1Checked && puesto1.value.trim() === '') || (mesa2Checked && puesto2.value.trim() === '')) {
+                    alert('Por favor, seleccione una mesa con su respectivo puesto');
+                    event.preventDefault();
+                }
+                if (!mesa1Checked && !mesa2Checked) {
+                    alert('Por favor, seleccione al menos una mesa con su respectivo puesto');
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
 <style>
     .custom-button {
         background-color: #9D2720;

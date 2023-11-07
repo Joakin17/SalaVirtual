@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ config('app.name') }} | Registration Page</title>
+    <title style="color: white;">Préstamos de Salas Biblioteca</title>
+    <link rel="icon" href="{{ asset('imgs/logou.png') }}" type="image/png">
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -18,12 +19,13 @@
 <body class="hold-transition register-page">
 <div class="register-box">
     <div class="register-logo">
-        <a href="{{ url('/home') }}"><b>{{ config('app.name') }}</b></a>
+        <h1 >Biblioteca Miguel de Cervantes</h1>
+        
     </div>
 
     <div class="card">
         <div class="card-body register-card-body">
-            <p class="login-box-msg">Register a new membership</p>
+            <p class="login-box-msg">Formulario de registro</p>
 
             <form method="post" action="{{ route('register') }}">
                 @csrf
@@ -86,14 +88,6 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-8">
-                        <div class="icheck-primary">
-                            <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                            <label for="agreeTerms">
-                                I agree to the <a href="#">terms</a>
-                            </label>
-                        </div>
-                    </div>
                     <!-- /.col -->
                     <div class="col-4">
                         <button type="submit" class="btn btn-primary btn-block">Register</button>
@@ -102,7 +96,7 @@
                 </div>
             </form>
 
-            <a href="{{ route('login') }}" class="text-center">I already have a membership</a>
+            <a href="{{ route('login') }}" class="text-center">Ya Tienes cuenta, presiona aqui</a>
         </div>
         <!-- /.form-box -->
     </div><!-- /.card -->

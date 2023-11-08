@@ -1,84 +1,152 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title style="color: white;">Préstamos de Salas Biblioteca</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Préstamos de Salas Biblioteca</title>
     <link rel="icon" href="{{ asset('imgs/logou.png') }}" type="image/png">
-
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-          integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
-          crossorigin="anonymous"/>
-
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
+    <style>
+        body {
+            background: white;
+            color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #F6C03D;
+            color: #fff;
+            border-radius: 8px;
+        }
+
+        .header-container h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .logo {
+            width: 75px;
+            height: 75px;
+        }
+
+        .login-box {
+            width: 400px;
+            margin: auto;
+        }
+
+        .card {
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .login-box-msg {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #F6C03D;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #e3a11a;
+        }
+
+        /* Any other styles you want to add */
+
+    </style>
 </head>
 <body class="hold-transition login-page">
-<div class="login-box">
-    <div class="login-logo">
-    <h1>Biblioteca Miguel de Cervantes</h1>
-    </div>
-    <!-- /.login-logo -->
-
-    <!-- /.login-box-body -->
-    <div class="card">
-        <div class="card-body login-card-body">
-            <p class="login-box-msg">Sistema de Prestamos</p>
-
-            <form method="post" action="{{ url('/login') }}">
-                @csrf
-
-                <div class="input-group mb-3">
-                    <input type="email"
-                           name="email"
-                           value="{{ old('email') }}"
-                           placeholder="Email"
-                           class="form-control @error('email') is-invalid @enderror">
-                    <div class="input-group-append">
-                        <div class="input-group-text"><span class="fas fa-envelope"></span></div>
-                    </div>
-                    @error('email')
-                    <span class="error invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="input-group mb-3">
-                    <input type="password"
-                           name="password"
-                           placeholder="Password"
-                           class="form-control @error('password') is-invalid @enderror">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                    @error('password')
-                    <span class="error invalid-feedback">{{ $message }}</span>
-                    @enderror
-
-                </div>
-
-                <div class="row">
-
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">Iniciar</button>
-                    </div>
-
-                </div>
-            </form>
-
- -->
+    <div class="login-box">
+        <div class="header-container text-center" >
+            <h2>Biblioteca Miguel De Cervantes</h2>
+            <img src="{{ asset('imgs/logou.png') }}" alt="Logo" class="logo">
         </div>
-        <!-- /.login-card-body -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <h3  class="login-box-msg">Sistemas de prestamos</h3>
+
+                <form method="post" action="{{ url('/login') }}">
+                    @csrf
+
+                    <div class="input-group mb-3">
+                        <input type="email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            placeholder="E-Mail"
+                            class="form-control @error('email') is-invalid @enderror"
+                            autofocus>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="password"
+                            name="password"
+                            placeholder="Password"
+                            class="form-control @error('password') is-invalid @enderror">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">
+                            Iniciar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
-</div>
-<!-- /.login-box -->
-
-<script src="{{ mix('js/app.js') }}" defer></script>
-
+    <script src="{{ mix('js/app.js') }}" defer></script>
 </body>
 </html>
